@@ -1,0 +1,30 @@
+{
+  "name": "cordova-plugin-app-update",
+  "version": "0.0.1",
+  "description": "Cordova App Update",
+  "cordova": {
+    "id": "cordova-plugin-app-update",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaenow/cordova-plugin-app-update.git"
+  },
+  "keywords": [
+    "cordova",
+    "app",
+    "auto",
+    "update",
+    "updater",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "vaenow",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vaenow/cordova-plugin-app-update/issues"
+  },
+  "homepage": "https://github.com/vaenow/cordova-plugin-app-update#readme"
+}
