@@ -344,6 +344,14 @@ public class UpdateManager {
         /**
          * 获取软件版本号
          *
+         * It's weird, I don't know why.
+         * <pre>
+         * versionName -> versionCode
+         * 0.0.1    ->  12
+         * 0.3.4    ->  3042
+         * 3.2.4    ->  302042
+         * 12.234.221 -> 1436212
+         * </pre>
          * @param context
          * @return
          */
@@ -353,7 +361,7 @@ public class UpdateManager {
             int versionCode = 0;
             try {
                 // 获取软件版本号，对应AndroidManifest.xml下android:versionCode
-                versionCode = context.getPackageManager().getPackageInfo("com.allere.autog1", 0).versionCode;
+                versionCode = context.getPackageManager().getPackageInfo(package_name, 0).versionCode;
             } catch (NameNotFoundException e) {
                 e.printStackTrace();
             }
