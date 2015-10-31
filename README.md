@@ -3,7 +3,7 @@ auto detect app update for cordova
 
 #Install
 ###Latest published version on npm (with Cordova CLI >= 5.0.0)
-`cordova plugin add cordova-plugin-dynamic-update`
+`cordova plugin add cordova-plugin-app-update`
 
 #Usage
  - Simple:
@@ -20,3 +20,4 @@ appUpdate.checkAppUpdate(onSuccess, onFail);
 Android only
 
 #License
+MIT
