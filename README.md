@@ -1,6 +1,12 @@
 # cordova-plugin-app-update
-auto detect app update for cordova
+App updater for Cordova/PhoneGap
 
+#Preview
+![enter image description here](https://github.com/vaenow/cordova-plugin-app-update/blob/master/res/img/Screenshot_2015-10-31-13-42-13.jpg)
+
+#
+
+![enter image description here](https://github.com/vaenow/cordova-plugin-app-update/blob/master/res/img/Screenshot_2015-10-31-13-42-19.jpg)
 #Install
 ###Latest published version on npm (with Cordova CLI >= 5.0.0)
 `cordova plugin add cordova-plugin-app-update`
