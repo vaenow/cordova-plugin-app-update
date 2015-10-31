@@ -24,7 +24,8 @@ appUpdate.checkAppUpdate(onSuccess, onFail);
 ```
 
 
-- version code you may need
+
+
 versionName | versionCode
 ------- | ----------------
 0.0.1  | 12
