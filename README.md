@@ -10,9 +10,9 @@ auto detect app update for cordova
 ```js
 window.AppUpdate.checkAppUpdate(onSuccess, onFail);
 ```
- - verbose
+ - Verbose
 ```js
-var appUpdate = cordova.require('cordova/AppUpdate');
+var appUpdate = cordova.require('cordova-plugin-app-update.AppUpdate');
 appUpdate.checkAppUpdate(onSuccess, onFail);
 ```
 
