@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
@@ -17,7 +18,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import com.allere.autog1.R;
 import org.apache.cordova.LOG;
 
 import java.io.File;
@@ -33,13 +33,13 @@ import java.util.concurrent.BlockingQueue;
 
 /**
  * Created by LuoWen on 2015/10/27.
- * 
+ *
  * Thanks @coolszy
  */
 public class UpdateManager {
     public static final String TAG = "UpdateManager";
 
-    /* 
+    /*
      * 远程的版本文件格式
      *   <update>
      *       <version>2222</version>
@@ -48,6 +48,9 @@ public class UpdateManager {
      *   </update>
      */
     private String URL_XML = "http://192.168.3.102:8080/update_apk/version.xml";
+
+    private String package_name;
+    private Resources resources;
 
     /* 下载中 */
     private static final int DOWNLOAD = 1;
@@ -66,6 +69,7 @@ public class UpdateManager {
     /* 更新进度条 */
     private ProgressBar mProgress;
     private Dialog mDownloadDialog;
+
 
 
     private BlockingQueue<Version> queue = new ArrayBlockingQueue<Version>(1);
@@ -90,6 +94,8 @@ public class UpdateManager {
 
     public UpdateManager(Context context) {
         this.mContext = context;
+        package_name = mContext.getPackageName();
+        resources = mContext.getResources();
     }
 
     /**
@@ -118,7 +124,7 @@ public class UpdateManager {
             // 显示提示对话框
             showNoticeDialog();
         } else {
-            Toast.makeText(mContext, R.string.soft_update_no, Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, getString("soft_update_no")/*R.string.soft_update_no*/, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -129,10 +135,10 @@ public class UpdateManager {
         LOG.d(TAG, "showNoticeDialog");
         // 构造对话框
         AlertDialog.Builder builder = new Builder(mContext);
-        builder.setTitle(R.string.soft_update_title);
-        builder.setMessage(R.string.soft_update_info);
+        builder.setTitle(getString("soft_update_title")/*R.string.soft_update_title*/);
+        builder.setMessage(getString("soft_update_info")/*R.string.soft_update_info*/);
         // 更新
-        builder.setPositiveButton(R.string.soft_update_updatebtn, new OnClickListener() {
+        builder.setPositiveButton(getString("soft_update_updatebtn")/*R.string.soft_update_updatebtn*/, new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -141,7 +147,7 @@ public class UpdateManager {
             }
         });
         // 稍后更新
-        // builder.setNegativeButton(R.string.soft_update_later, new OnClickListener() {
+        // builder.setNegativeButton(getString("soft_update_later")/*R.string.soft_update_later*/, new OnClickListener() {
         //     @Override
         //     public void onClick(DialogInterface dialog, int which) {
         //         dialog.dismiss();
@@ -159,14 +165,15 @@ public class UpdateManager {
 
         // 构造软件下载对话框
         AlertDialog.Builder builder = new Builder(mContext);
-        builder.setTitle(R.string.soft_updating);
+        builder.setTitle(getString("soft_updating")/*R.string.soft_updating*/);
         // 给下载对话框增加进度条
         final LayoutInflater inflater = LayoutInflater.from(mContext);
-        View v = inflater.inflate(R.layout.appupdate_progress, null);
-        mProgress = (ProgressBar) v.findViewById(R.id.update_progress);
+        View v = inflater.inflate(getLayout("appupdate_progress")/*R.layout.appupdate_progress*/, null);
+
+        mProgress = (ProgressBar) v.findViewById(getId("update_progress")/*R.id.update_progress*/);
         builder.setView(v);
         // 取消更新
-        builder.setNegativeButton(R.string.soft_update_cancel, new OnClickListener() {
+        builder.setNegativeButton(getString("soft_update_cancel")/*R.string.soft_update_cancel*/, new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -251,6 +258,16 @@ public class UpdateManager {
             // 取消下载对话框显示
             mDownloadDialog.dismiss();
         }
+    }
+
+    private int getId(String name) {
+        return resources.getIdentifier(name, "id", package_name);
+    }
+    private int getString(String name) {
+        return resources.getIdentifier(name, "string", package_name);
+    }
+    private int getLayout(String name) {
+        return resources.getIdentifier(name, "layout", package_name);
     }
 
     /**
