@@ -21,18 +21,21 @@ public class CheckAppUpdate extends CordovaPlugin {
         Activity activity = this.cordova.getActivity();
         if (action.equals("checkAppUpdate")) {
             LOG.d(TAG, "action.equals");
+            LOG.d(TAG, "args " + args);
+            LOG.d(TAG, "args.length() " + args.length());
 
-            UpdateManager updateManager = new UpdateManager(activity);
-            // 检查软件更新
-            updateManager.checkUpdate();
-            /*Intent i = activity.getIntent();
-            if (i.hasExtra(Intent.EXTRA_TEXT)) {
-                callbackContext.success(i.getStringExtra(Intent.EXTRA_TEXT));
+            if (args.length() == 0) {
+                new UpdateManager(activity).checkUpdate();
             } else {
-                callbackContext.error("");
-            }*/
+                String updateUrl = args.getString(0);
+                LOG.d(TAG, "updateUrl " + updateUrl);
+                LOG.d(TAG, "updateUrl.isEmpty() " + updateUrl.isEmpty());
+                new UpdateManager(activity, updateUrl).checkUpdate();
+            }
+            callbackContext.success();
             return true;
         }
+        callbackContext.error("no such method: " + action);
         return false;
     }
 }

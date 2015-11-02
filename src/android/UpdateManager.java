@@ -47,7 +47,7 @@ public class UpdateManager {
      *       <url>http://192.168.3.102/android.apk</url>
      *   </update>
      */
-    private String URL_XML = "http://192.168.3.102:8080/update_apk/version.xml";
+    private String updateXmlUrl;
 
     private String package_name;
     private Resources resources;
@@ -93,6 +93,11 @@ public class UpdateManager {
     };
 
     public UpdateManager(Context context) {
+        this(context, "http://192.168.3.102:8080/update_apk/version.xml");
+    }
+
+    public UpdateManager(Context context, String updateUrl) {
+        this.updateXmlUrl = updateUrl;
         this.mContext = context;
         package_name = mContext.getPackageName();
         resources = mContext.getResources();
@@ -376,7 +381,7 @@ public class UpdateManager {
         private int getVersionCodeRemote() {
             int versionCodeRemote = 0;
 
-            InputStream is = returnFileIS(URL_XML);
+            InputStream is = returnFileIS(updateXmlUrl);
             // 解析XML文件。 由于XML文件比较小，因此使用DOM方式进行解析
             ParseXmlService service = new ParseXmlService();
             try {
