@@ -15,12 +15,14 @@ App updater for Cordova/PhoneGap
 # Usage
  - Simple:
 ```js
-window.AppUpdate.checkAppUpdate(onSuccess, onFail);
+var updateUrl = "http://192.168.0.1/version.xml";
+window.AppUpdate.checkAppUpdate(onSuccess, onFail, updateUrl);
 ```
  - Verbose
 ```js
 var appUpdate = cordova.require('cordova-plugin-app-update.AppUpdate');
-appUpdate.checkAppUpdate(onSuccess, onFail);
+var updateUrl = "http://192.168.0.1/version.xml";
+appUpdate.checkAppUpdate(onSuccess, onFail, updateUrl);
 ```
 
 
@@ -32,6 +34,16 @@ versionName | versionCode
 0.3.4  | 3042  
 3.2.4   | 302042
 12.234.221  | 1436212
+
+# server version.xml file
+ 
+```xml
+<update>
+    <version>302042</version>
+    <name>name</name>
+    <url>http://192.168.0.1/android.apk</url>
+</update>
+```
 
 
 # Platforms
