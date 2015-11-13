@@ -51,3 +51,6 @@ Android only
 
 # License
 MIT
+
+# :snowflake: :beers:
+Pull request is welcomed, I'll be very pleasure if you can help me to improve this cordova-plugin. 
