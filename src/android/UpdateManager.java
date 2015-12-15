@@ -1,4 +1,4 @@
-package com.xuexiq.appupdate;
+package com.vaenow.appupdate;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;

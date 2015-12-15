@@ -1,9 +1,8 @@
-package com.xuexiq.appupdate;
+package com.vaenow.appupdate;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Environment;
-import android.os.Handler;
 import android.widget.ProgressBar;
 
 import java.io.File;

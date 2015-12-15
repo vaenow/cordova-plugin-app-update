@@ -1,4 +1,4 @@
-package com.xuexiq.appupdate;
+package com.vaenow.appupdate;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ProgressBar;
-import org.apache.cordova.LOG;
 
 import java.io.File;
 import java.util.HashMap;

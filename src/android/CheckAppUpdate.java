@@ -1,4 +1,4 @@
-package com.xuexiq.appupdate;
+package com.vaenow.appupdate;
 
 import android.app.Activity;
 import org.apache.cordova.CallbackContext;
