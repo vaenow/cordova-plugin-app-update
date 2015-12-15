@@ -12,6 +12,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * Created by LuoWen on 2015/12/14.
+ */
 public class CheckUpdateThread implements Runnable {
     private String TAG = "CheckUpdateThread";
 
