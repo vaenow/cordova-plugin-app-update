@@ -1,4 +1,4 @@
-package com.vaenow.appupdate;
+package com.vaenow.appupdate.android;
 
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;

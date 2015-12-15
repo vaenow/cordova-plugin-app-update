@@ -9,9 +9,9 @@ App updater for Cordova/PhoneGap
 
 ![enter image description here](https://raw.githubusercontent.com/vaenow/cordova-plugin-app-update/master/res/img/Screenshot_2015-10-31-13-42-19.jpg)
 
-#Install
+# Install
 
-###Latest published version on npm (with Cordova CLI >= 5.0.0)
+### Latest published version on npm (with Cordova CLI >= 5.0.0)
 `cordova plugin add cordova-plugin-app-update`
 
 # Usage

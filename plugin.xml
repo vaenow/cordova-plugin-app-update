@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="cordova-plugin-app-update" version="1.2.0">
+    id="cordova-plugin-app-update" version="1.2.1">
     <name>AppUpdate</name>
     <description>Cordova App Update</description>
     <license>Apache 2.0</license>
@@ -22,15 +22,7 @@
             <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
         </config-file>
 
-        <source-file src="src/android/UpdateManager.java" target-dir="src/com/vaenow/appupdate"/>
-        <source-file src="src/android/ParseXmlService.java" target-dir="src/com/vaenow/appupdate"/>
-        <source-file src="src/android/CheckAppUpdate.java" target-dir="src/com/vaenow/appupdate"/>
-        <source-file src="src/android/CheckUpdateThread.java" target-dir="src/com/vaenow/appupdate"/>
-        <source-file src="src/android/Constants.java" target-dir="src/com/vaenow/appupdate"/>
-        <source-file src="src/android/DownloadApkThread.java" target-dir="src/com/vaenow/appupdate"/>
-        <source-file src="src/android/DownloadHandler.java" target-dir="src/com/vaenow/appupdate"/>
-        <source-file src="src/android/GetRemoteXmlThread.java" target-dir="src/com/vaenow/appupdate"/>
-        <source-file src="src/android/Version.java" target-dir="src/com/vaenow/appupdate"/>
+        <source-file src="src/android" target-dir="src/com/vaenow/appupdate"/>
         <source-file src="res/values/appupdate_strings.xml" target-dir="res/values"/>
         <source-file src="res/layout/appupdate_progress.xml" target-dir="res/layout"/>
     </platform>

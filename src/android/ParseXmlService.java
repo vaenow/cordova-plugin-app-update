@@ -1,4 +1,4 @@
-package com.vaenow.appupdate;
+package com.vaenow.appupdate.android;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
