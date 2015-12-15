@@ -11,7 +11,7 @@
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="AppUpdate">
-                <param name="android-package" value="com.vaenow.appupdate.CheckAppUpdate"/>
+                <param name="android-package" value="com.vaenow.appupdate.android.CheckAppUpdate"/>
                 <param name="onload" value="true" />  <!-- Must Have -->
             </feature>
         </config-file>
