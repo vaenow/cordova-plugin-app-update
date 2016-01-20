@@ -1,19 +1,18 @@
 package com.vaenow.appupdate.android;
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.res.Resources;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.os.Handler;
 import android.widget.ProgressBar;
+import org.apache.cordova.CallbackContext;
 import org.apache.cordova.LOG;
+import org.json.JSONArray;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by LuoWen on 2015/10/27.
@@ -32,45 +31,67 @@ public class UpdateManager {
      *   </update>
      */
     private String updateXmlUrl;
+    private JSONArray args;
+    private CallbackContext callbackContext;
     private String packageName;
-    private Resources resources;
     private Context mContext;
-    private Dialog mDownloadDialog;
-    /* 更新进度条 */
-    private ProgressBar mProgress;
+    private MsgBox msgBox;
 
-    private BlockingQueue<Version> queue = new ArrayBlockingQueue<Version>(1);
+    private List<Version> queue = new ArrayList<Version>(1);
 
     private CheckUpdateThread checkUpdateThread;
     private DownloadApkThread downloadApkThread;
 
 
-    public UpdateManager(Context context) {
-        this(context, "http://192.168.3.102:8080/update_apk/version.xml");
+    public UpdateManager(JSONArray args, CallbackContext callbackContext, Context context) {
+        this(args, callbackContext, context, "http://192.168.3.102:8080/update_apk/version.xml");
     }
 
-    public UpdateManager(Context context, String updateUrl) {
+    public UpdateManager(JSONArray args, CallbackContext callbackContext, Context context, String updateUrl) {
+        this.args = args;
+        this.callbackContext = callbackContext;
         this.updateXmlUrl = updateUrl;
         this.mContext = context;
         packageName = mContext.getPackageName();
-        resources = mContext.getResources();
+        msgBox = new MsgBox(mContext);
     }
+
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+
+            switch (msg.what) {
+                case Constants.NETWORK_ERROR:
+                    msgBox.showErrorDialog(errorDialogOnClick);
+                    break;
+                case Constants.VERSION_COMPARE_START:
+                    compareVersions();
+                    break;
+                case Constants.VERSION_COMPARE_SUCCESS:
+                    callbackContext.success();
+                    break;
+                case Constants.VERSION_COMPARE_FAIL:
+//                    callbackContext.error(Constants.VERSION_COMPARE_FAIL);
+                    break;
+            }
+        }
+    };
 
     /**
      * 检测软件更新
      */
     public void checkUpdate() {
         LOG.d(TAG, "checkUpdate..");
-        checkUpdateThread = new CheckUpdateThread(mContext, queue, packageName, updateXmlUrl);
+        checkUpdateThread = new CheckUpdateThread(mContext, mHandler, queue, packageName, updateXmlUrl);
         new Thread(checkUpdateThread).start();
+    }
 
-        //阻塞式队列
-        Version version = null;
-        try {
-            version = queue.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    /**
+     * 对比版本号
+     */
+    private void compareVersions() {
+        Version version = queue.get(0);
         int versionCodeLocal = version.getLocal();
         int versionCodeRemote = version.getRemote();
 
@@ -79,86 +100,51 @@ public class UpdateManager {
         if (versionCodeLocal != versionCodeRemote) {
             LOG.d(TAG, "need update");
             // 显示提示对话框
-            showNoticeDialog();
+            msgBox.showNoticeDialog(noticeDialogOnClick);
         } else {
             // Do not show Toast
             //Toast.makeText(mContext, getString("soft_update_no"), Toast.LENGTH_LONG).show();
         }
     }
 
-    /**
-     * 显示软件更新对话框
-     */
-    private void showNoticeDialog() {
-        LOG.d(TAG, "showNoticeDialog");
-        // 构造对话框
-        AlertDialog.Builder builder = new Builder(mContext);
-        builder.setTitle(getString("soft_update_title"));
-        builder.setMessage(getString("soft_update_info"));
-        // 更新
-        builder.setPositiveButton(getString("soft_update_updatebtn"), new OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                // 显示下载对话框
-                showDownloadDialog();
-            }
-        });
-        Dialog noticeDialog = builder.create();
-        noticeDialog.show();
-    }
+    private OnClickListener noticeDialogOnClick = new OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+            // 显示下载对话框
+            Map<String, Object> ret = msgBox.showDownloadDialog(downloadDialogOnClick);
+            // 下载文件
+            downloadApk((Dialog)ret.get("dialog"), (ProgressBar)ret.get("progress"));
+        }
+    };
 
-    /**
-     * 显示软件下载对话框
-     */
-    private void showDownloadDialog() {
-        LOG.d(TAG, "showDownloadDialog");
+    private OnClickListener downloadDialogOnClick = new OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+            // 设置取消状态
+            downloadApkThread.cancelBuildUpdate();
+        }
+    };
 
-        // 构造软件下载对话框
-        AlertDialog.Builder builder = new Builder(mContext);
-        builder.setTitle(getString("soft_updating"));
-        // 给下载对话框增加进度条
-        final LayoutInflater inflater = LayoutInflater.from(mContext);
-        View v = inflater.inflate(getLayout("appupdate_progress"), null);
-
-        mProgress = (ProgressBar) v.findViewById(getId("update_progress"));
-        builder.setView(v);
-        // 取消更新
-        builder.setNegativeButton(getString("soft_update_cancel"), new OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                // 设置取消状态
-                downloadApkThread.cancelBuildUpdate();
-            }
-        });
-        mDownloadDialog = builder.create();
-        mDownloadDialog.show();
-        // 下载文件
-        downloadApk();
-    }
+    private OnClickListener errorDialogOnClick = new OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+        }
+    };
 
     /**
      * 下载apk文件
+     * @param mProgress
+     * @param mDownloadDialog
      */
-    private void downloadApk() {
+    private void downloadApk(Dialog mDownloadDialog, ProgressBar mProgress) {
         LOG.d(TAG, "downloadApk" + mProgress);
 
         // 启动新线程下载软件
         downloadApkThread = new DownloadApkThread(mContext, mProgress, mDownloadDialog, checkUpdateThread.getMHashMap());
         new Thread(downloadApkThread).start();
-    }
-
-    private int getId(String name) {
-        return resources.getIdentifier(name, "id", packageName);
-    }
-
-    private int getString(String name) {
-        return resources.getIdentifier(name, "string", packageName);
-    }
-
-    private int getLayout(String name) {
-        return resources.getIdentifier(name, "layout", packageName);
     }
 
 }

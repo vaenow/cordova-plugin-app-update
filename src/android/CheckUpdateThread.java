@@ -2,15 +2,14 @@ package com.vaenow.appupdate.android;
 
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Handler;
 import org.apache.cordova.LOG;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.concurrent.BlockingQueue;
+import java.util.List;
 
 /**
  * Created by LuoWen on 2015/12/14.
@@ -21,9 +20,10 @@ public class CheckUpdateThread implements Runnable {
     /* 保存解析的XML信息 */
     HashMap<String, String> mHashMap;
     private Context mContext;
-    private BlockingQueue<Version> queue;
+    private List<Version> queue;
     private String packageName;
     private String updateXmlUrl;
+    private Handler mHandler;
 
     private void setMHashMap(HashMap<String, String> mHashMap) {
         this.mHashMap = mHashMap;
@@ -33,11 +33,12 @@ public class CheckUpdateThread implements Runnable {
         return mHashMap;
     }
 
-    public CheckUpdateThread(Context mContext, BlockingQueue<Version> queue, String packageName, String updateXmlUrl) {
+    public CheckUpdateThread(Context mContext, Handler mHandler, List<Version> queue, String packageName, String updateXmlUrl) {
         this.mContext = mContext;
         this.queue = queue;
         this.packageName = packageName;
         this.updateXmlUrl = updateXmlUrl;
+        this.mHandler = mHandler;
     }
 
     @Override
@@ -45,12 +46,12 @@ public class CheckUpdateThread implements Runnable {
         int versionCodeLocal = getVersionCodeLocal(mContext); // 获取当前软件版本
         int versionCodeRemote = getVersionCodeRemote();  //获取服务器当前软件版本
 
-        //给阻塞式队列添加值
-        Version version = new Version(versionCodeLocal, versionCodeRemote);
-        try {
-            queue.put(version);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        queue.add(new Version(versionCodeLocal, versionCodeRemote));
+
+        if (versionCodeLocal == 0 || versionCodeRemote == 0) {
+            mHandler.sendEmptyMessage(Constants.NETWORK_ERROR);
+        } else {
+            mHandler.sendEmptyMessage(Constants.VERSION_COMPARE_START);
         }
     }
 
@@ -77,13 +78,10 @@ public class CheckUpdateThread implements Runnable {
             LOG.d(TAG, "conn.connect();");
             is = conn.getInputStream(); //得到网络返回的输入流
             LOG.d(TAG, "is" + is);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
         return is;
     }
 

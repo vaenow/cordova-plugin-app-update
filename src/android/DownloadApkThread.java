@@ -47,6 +47,16 @@ public class DownloadApkThread implements Runnable {
 
     @Override
     public void run() {
+        downloadAndInstall();
+        // 取消下载对话框显示
+        mDownloadDialog.dismiss();
+    }
+
+    public void cancelBuildUpdate() {
+        this.cancelUpdate = true;
+    }
+
+    private void downloadAndInstall() {
         try {
             // 判断SD卡是否存在，并且是否具有读写权限
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -96,11 +106,5 @@ public class DownloadApkThread implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // 取消下载对话框显示
-        mDownloadDialog.dismiss();
-    }
-
-    public void cancelBuildUpdate() {
-        this.cancelUpdate = true;
     }
 }
