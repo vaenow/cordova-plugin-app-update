@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-app-update",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "description": "Cordova App Update",
   "cordova": {
     "id": "cordova-plugin-app-update",
