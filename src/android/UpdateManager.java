@@ -103,7 +103,7 @@ public class UpdateManager {
             msgBox.showNoticeDialog(noticeDialogOnClick);
         } else {
             // Do not show Toast
-            //Toast.makeText(mContext, getString("soft_update_no"), Toast.LENGTH_LONG).show();
+            //Toast.makeText(mContext, getString("update_latest"), Toast.LENGTH_LONG).show();
         }
     }
 

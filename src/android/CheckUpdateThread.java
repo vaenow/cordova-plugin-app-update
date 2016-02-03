@@ -46,6 +46,7 @@ public class CheckUpdateThread implements Runnable {
         int versionCodeLocal = getVersionCodeLocal(mContext); // 获取当前软件版本
         int versionCodeRemote = getVersionCodeRemote();  //获取服务器当前软件版本
 
+        queue.clear(); //ensure the queue is empty
         queue.add(new Version(versionCodeLocal, versionCodeRemote));
 
         if (versionCodeLocal == 0 || versionCodeRemote == 0) {
@@ -69,15 +70,10 @@ public class CheckUpdateThread implements Runnable {
 
         try {
             url = new URL(path);
-            LOG.d(TAG, "url" + url);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();//利用HttpURLConnection对象,我们可以从网络中获取网页数据.
-            LOG.d(TAG, "conn" + conn);
             conn.setDoInput(true);
-            LOG.d(TAG, " conn.setDoInput(true);");
             conn.connect();
-            LOG.d(TAG, "conn.connect();");
             is = conn.getInputStream(); //得到网络返回的输入流
-            LOG.d(TAG, "is" + is);
         } catch (Exception e) {
             e.printStackTrace();
         }

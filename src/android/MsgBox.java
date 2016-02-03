@@ -43,10 +43,10 @@ public class MsgBox{
             LOG.d(TAG, "showNoticeDialog");
             // 构造对话框
             AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-            builder.setTitle(getString("soft_update_title"));
-            builder.setMessage(getString("soft_update_info"));
+            builder.setTitle(getString("update_title"));
+            builder.setMessage(getString("update_message"));
             // 更新
-            builder.setPositiveButton(getString("soft_update_updatebtn"), onClickListener);
+            builder.setPositiveButton(getString("update_update_btn"), onClickListener);
             noticeDialog = builder.create();
         }
 
@@ -67,16 +67,16 @@ public class MsgBox{
 
             // 构造软件下载对话框
             AlertDialog.Builder builder = new Builder(mContext);
-            builder.setTitle(getString("soft_updating"));
+            builder.setTitle(getString("updating"));
             // 给下载对话框增加进度条
             final LayoutInflater inflater = LayoutInflater.from(mContext);
-            View v = inflater.inflate(getLayout("appupdate_progress"), null);
+            View v = inflater.inflate(getLayout("update_progress"), null);
 
             /* 更新进度条 */
             downloadDialogProgress = (ProgressBar) v.findViewById(getId("update_progress"));
             builder.setView(v);
             // 取消更新
-            builder.setNegativeButton(getString("soft_update_cancel"), onClickListener);
+            builder.setNegativeButton(getString("update_cancel"), onClickListener);
             downloadDialog = builder.create();
         }
 
@@ -97,10 +97,10 @@ public class MsgBox{
             LOG.d(TAG, "initErrorDialog");
             // 构造对话框
             AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-            builder.setTitle(getString("app_error_title"));
-            builder.setMessage(getString("app_error_message"));
+            builder.setTitle(getString("update_error_title"));
+            builder.setMessage(getString("update_error_message"));
             // 更新
-            builder.setPositiveButton(getString("app_error_yes"), errorDialogOnClick);
+            builder.setPositiveButton(getString("update_error_yes_btn"), errorDialogOnClick);
             errorDialog = builder.create();
         }
 
