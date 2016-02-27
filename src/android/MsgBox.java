@@ -80,7 +80,7 @@ public class MsgBox{
             downloadDialog = builder.create();
         }
 
-        if(downloadDialog.isShowing()) downloadDialog.show();
+        if(!downloadDialog.isShowing()) downloadDialog.show();
 
         Map<String, Object> ret = new HashMap<String, Object>();
         ret.put("dialog", downloadDialog);
