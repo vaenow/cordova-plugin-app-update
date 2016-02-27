@@ -70,7 +70,7 @@ public class MsgBox{
             builder.setTitle(getString("updating"));
             // 给下载对话框增加进度条
             final LayoutInflater inflater = LayoutInflater.from(mContext);
-            View v = inflater.inflate(getLayout("update_progress"), null);
+            View v = inflater.inflate(getLayout("appupdate_progress"), null);
 
             /* 更新进度条 */
             downloadDialogProgress = (ProgressBar) v.findViewById(getId("update_progress"));
