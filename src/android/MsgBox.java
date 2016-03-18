@@ -51,7 +51,8 @@ public class MsgBox{
         }
 
         if (!noticeDialog.isShowing()) noticeDialog.show();
-
+        
+        noticeDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
         return noticeDialog;
     }
 
@@ -76,11 +77,15 @@ public class MsgBox{
             downloadDialogProgress = (ProgressBar) v.findViewById(getId("update_progress"));
             builder.setView(v);
             // 取消更新
-            builder.setNegativeButton(getString("update_cancel"), onClickListener);
+            //builder.setNegativeButton(getString("update_cancel"), onClickListener);
+            //转到后台更新
+            builder.setNegativeButton(getString("update_bg"), onClickListener);
             downloadDialog = builder.create();
         }
 
         if(!downloadDialog.isShowing()) downloadDialog.show();
+
+        downloadDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
 
         Map<String, Object> ret = new HashMap<String, Object>();
         ret.put("dialog", downloadDialog);

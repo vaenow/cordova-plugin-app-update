@@ -36,6 +36,7 @@ public class UpdateManager {
     private String packageName;
     private Context mContext;
     private MsgBox msgBox;
+    private Boolean isDownloading = false;
 
     private List<Version> queue = new ArrayList<Version>(1);
 
@@ -97,7 +98,7 @@ public class UpdateManager {
 
         //比对版本号
         //检查软件是否有更新版本
-        if (versionCodeLocal != versionCodeRemote) {
+        if (!isDownloading && versionCodeLocal != versionCodeRemote) {
             LOG.d(TAG, "need update");
             // 显示提示对话框
             msgBox.showNoticeDialog(noticeDialogOnClick);
@@ -111,6 +112,7 @@ public class UpdateManager {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             dialog.dismiss();
+            isDownloading = true;
             // 显示下载对话框
             Map<String, Object> ret = msgBox.showDownloadDialog(downloadDialogOnClick);
             // 下载文件
@@ -123,7 +125,7 @@ public class UpdateManager {
         public void onClick(DialogInterface dialog, int which) {
             dialog.dismiss();
             // 设置取消状态
-            downloadApkThread.cancelBuildUpdate();
+            //downloadApkThread.cancelBuildUpdate();
         }
     };
 
