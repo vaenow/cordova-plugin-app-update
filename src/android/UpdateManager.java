@@ -98,10 +98,14 @@ public class UpdateManager {
 
         //比对版本号
         //检查软件是否有更新版本
-        if (!isDownloading && versionCodeLocal != versionCodeRemote) {
-            LOG.d(TAG, "need update");
-            // 显示提示对话框
-            msgBox.showNoticeDialog(noticeDialogOnClick);
+        if (versionCodeLocal != versionCodeRemote) {
+            if(isDownloading) {
+                msgBox.showDownloadDialog(null);
+            } else {
+                LOG.d(TAG, "need update");
+                // 显示提示对话框
+                msgBox.showNoticeDialog(noticeDialogOnClick);
+            }
         } else {
             // Do not show Toast
             //Toast.makeText(mContext, getString("update_latest"), Toast.LENGTH_LONG).show();
