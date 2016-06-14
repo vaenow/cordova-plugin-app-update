@@ -64,7 +64,8 @@ public class UpdateManager {
 
             switch (msg.what) {
                 case Constants.NETWORK_ERROR:
-                    msgBox.showErrorDialog(errorDialogOnClick);
+                    //暂时隐藏错误
+                    //msgBox.showErrorDialog(errorDialogOnClick);
                     break;
                 case Constants.VERSION_COMPARE_START:
                     compareVersions();
