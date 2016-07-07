@@ -2,6 +2,13 @@
 # cordova-plugin-app-update
 App updater for Cordova/PhoneGap
 
+# Demo 
+Try it yourself:
+
+Just clone and install this demo.
+[cordova-plugin-app-update-DEMO](https://github.com/vaenow/cordova-plugin-app-update-demo)
+:tada:
+
 # Preview
 ![enter image description here](https://raw.githubusercontent.com/vaenow/cordova-plugin-app-update/master/res/img/Screenshot_2015-10-31-13-42-13.jpg)
 
