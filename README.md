@@ -28,20 +28,28 @@ appUpdate.checkAppUpdate(onSuccess, onFail, updateUrl);
 ```
 
 
+### versionCode
+
+You can simply get the versionCode from typing those code in `Console`
+
+```js
+var versionCode = AppVersion.build
+console.log(versionCode)  // 302048
+```
 
 
 versionName | versionCode
 ------- | ----------------
-0.0.1  | 12
-0.3.4  | 3042  
-3.2.4   | 302042
-12.234.221  | 1436212
+0.0.1  | 18
+0.3.4  | 3048  
+3.2.4   | 302048
+12.234.221  | 1436218
 
 ### server version.xml file
  
 ```xml
 <update>
-    <version>302042</version>
+    <version>302048</version>
     <name>name</name>
     <url>http://192.168.0.1/android.apk</url>
 </update>
