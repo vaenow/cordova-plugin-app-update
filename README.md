@@ -70,4 +70,7 @@ Android only
 MIT
 
 # :snowflake: :beers:
-Pull request is welcomed, I'll be very pleasure if you can help me to improve this cordova-plugin. 
+
+* Please let me know if you have any questions.
+
+* Support me a `Star` if it is necessary.  :+1:
