@@ -31,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/vaenow/cordova-plugin-app-update/issues"
   },
-  "homepage": "https://github.com/vaenow/cordova-plugin-app-update#readme"
+  "homepage": "https://github.com/vaenow/cordova-plugin-app-update#readme",
+  "devDependencies": {
+    "jshint": "^2.6.0"
+  }
 }
