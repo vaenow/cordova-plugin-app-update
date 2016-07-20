@@ -24,13 +24,19 @@
   ],
   "author": "vaenow",
   "license": "MIT",
+  "scripts": {
+    "test": "npm run jshint",
+    "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src"
+  },
   "bugs": {
     "url": "https://github.com/vaenow/cordova-plugin-app-update/issues"
   },
-
   "scripts": {
     "test": "npm run jshint",
     "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src && node node_modules/jshint/bin/jshint tests"
   },
-  "homepage": "https://github.com/vaenow/cordova-plugin-app-update#readme"
+  "homepage": "https://github.com/vaenow/cordova-plugin-app-update#readme",
+  "devDependencies": {
+    "jshint": "^2.6.0"
+  }
 }
