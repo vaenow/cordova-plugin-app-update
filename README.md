@@ -1,4 +1,6 @@
 
+![travis](https://travis-ci.org/vaenow/cordova-plugin-app-update.svg?branch=master)
+
 # cordova-plugin-app-update
 App updater for Cordova/PhoneGap
 
