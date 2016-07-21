@@ -66,16 +66,25 @@ public class UpdateManager {
                 case Constants.NETWORK_ERROR:
                     //暂时隐藏错误
                     //msgBox.showErrorDialog(errorDialogOnClick);
+                    callbackContext.error(Utils.makeJSON(Constants.NETWORK_ERROR, "network error"));
                     break;
                 case Constants.VERSION_COMPARE_START:
                     compareVersions();
                     break;
                 case Constants.VERSION_COMPARE_SUCCESS:
-                    callbackContext.success();
+                    callbackContext.success(Utils.makeJSON(Constants.VERSION_COMPARE_SUCCESS, "success"));
                     break;
                 case Constants.VERSION_COMPARE_FAIL:
-//                    callbackContext.error(Constants.VERSION_COMPARE_FAIL);
+                    callbackContext.error(Utils.makeJSON(Constants.VERSION_COMPARE_FAIL, "version compare fail"));
                     break;
+                case Constants.VERSION_RESOLVE_FAIL:
+                    callbackContext.error(Utils.makeJSON(Constants.VERSION_RESOLVE_FAIL, "version resolve fail"));
+                    break;
+                case Constants.REMOTE_FILE_NOT_FOUND:
+                    callbackContext.error(Utils.makeJSON(Constants.REMOTE_FILE_NOT_FOUND, "remote file not found"));
+                    break;
+                default:
+                    callbackContext.error(Utils.makeJSON(Constants.UNKNOWN_ERROR, "unknown error"));
             }
         }
     };

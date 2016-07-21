@@ -5,25 +5,36 @@ package com.vaenow.appupdate.android;
  */
 public interface Constants {
     /* 下载中 */
-    public static final int DOWNLOAD = 1;
+    int DOWNLOAD = 1;
     /* 下载结束 */
-    public static final int DOWNLOAD_FINISH = 2;
+    int DOWNLOAD_FINISH = 2;
 
     /**
      * 对比版本号
      */
-    public static final int VERSION_COMPARE_START = 200;
-    public static final int VERSION_COMPARE_SUCCESS = 201;
-    public static final int VERSION_COMPARE_FAIL = 202;
+    int VERSION_COMPARE_SUCCESS = 200;
+    int VERSION_COMPARE_START = 201;
+    int VERSION_COMPARE_FAIL = 202;
 
     /**
      * 版本解析错误
      */
-    public static final int VERSION_RESOLVE_FAIL = 301;
+    int VERSION_RESOLVE_FAIL = 301;
 
     /**
      * 网络错误
      */
-    public static final int NETWORK_ERROR = 404;
+    int REMOTE_FILE_NOT_FOUND = 404;
+    int NETWORK_ERROR = 405;
+
+    /**
+     * 没有相应的方法
+     */
+    int NO_SUCH_METHOD = 501;
+
+    /**
+     * 未知错误
+     */
+    int UNKNOWN_ERROR = 901;
 
 }

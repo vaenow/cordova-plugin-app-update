@@ -5,6 +5,7 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by LuoWen on 2015/10/27.
@@ -20,11 +21,9 @@ public class CheckAppUpdate extends CordovaPlugin {
 
         if (action.equals("checkAppUpdate")) {
             getUpdateManager(args, callbackContext).checkUpdate();
-            callbackContext.success();
             return true;
         }
-
-        callbackContext.error("no such method: " + action);
+        callbackContext.error(Utils.makeJSON(Constants.NO_SUCH_METHOD, "no such method: " + action));
         return false;
     }
 

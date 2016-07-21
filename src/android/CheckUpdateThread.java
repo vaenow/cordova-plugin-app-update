@@ -5,8 +5,11 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Handler;
 import org.apache.cordova.LOG;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
@@ -50,7 +53,7 @@ public class CheckUpdateThread implements Runnable {
         queue.add(new Version(versionCodeLocal, versionCodeRemote));
 
         if (versionCodeLocal == 0 || versionCodeRemote == 0) {
-            mHandler.sendEmptyMessage(Constants.NETWORK_ERROR);
+            mHandler.sendEmptyMessage(Constants.VERSION_RESOLVE_FAIL);
         } else {
             mHandler.sendEmptyMessage(Constants.VERSION_COMPARE_START);
         }
@@ -74,8 +77,12 @@ public class CheckUpdateThread implements Runnable {
             conn.setDoInput(true);
             conn.connect();
             is = conn.getInputStream(); //得到网络返回的输入流
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
+            mHandler.sendEmptyMessage(Constants.REMOTE_FILE_NOT_FOUND);
+        } catch (IOException e) {
+            e.printStackTrace();
+            mHandler.sendEmptyMessage(Constants.NETWORK_ERROR);
         }
 
         return is;
