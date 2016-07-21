@@ -12,14 +12,15 @@ public interface Constants {
     /**
      * 对比版本号
      */
-    int VERSION_COMPARE_SUCCESS = 200;
-    int VERSION_COMPARE_START = 201;
-    int VERSION_COMPARE_FAIL = 202;
+    int VERSION_COMPARE_START = 200;
+    int VERSION_NEED_UPDATE = 201;
+    int VERSION_UP_TO_UPDATE = 202;
 
     /**
      * 版本解析错误
      */
     int VERSION_RESOLVE_FAIL = 301;
+    int VERSION_COMPARE_FAIL = 302;
 
     /**
      * 网络错误

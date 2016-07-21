@@ -71,8 +71,11 @@ public class UpdateManager {
                 case Constants.VERSION_COMPARE_START:
                     compareVersions();
                     break;
-                case Constants.VERSION_COMPARE_SUCCESS:
-                    callbackContext.success(Utils.makeJSON(Constants.VERSION_COMPARE_SUCCESS, "success"));
+                case Constants.VERSION_NEED_UPDATE:
+                    callbackContext.success(Utils.makeJSON(Constants.VERSION_NEED_UPDATE, "success, need date."));
+                    break;
+                case Constants.VERSION_UP_TO_UPDATE:
+                    callbackContext.success(Utils.makeJSON(Constants.VERSION_UP_TO_UPDATE, "success, up to date."));
                     break;
                 case Constants.VERSION_COMPARE_FAIL:
                     callbackContext.error(Utils.makeJSON(Constants.VERSION_COMPARE_FAIL, "version compare fail"));
@@ -115,8 +118,10 @@ public class UpdateManager {
                 LOG.d(TAG, "need update");
                 // 显示提示对话框
                 msgBox.showNoticeDialog(noticeDialogOnClick);
+                mHandler.sendEmptyMessage(Constants.VERSION_NEED_UPDATE);
             }
         } else {
+            mHandler.sendEmptyMessage(Constants.VERSION_UP_TO_UPDATE);
             // Do not show Toast
             //Toast.makeText(mContext, getString("update_latest"), Toast.LENGTH_LONG).show();
         }
