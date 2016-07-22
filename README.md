@@ -21,7 +21,7 @@ Just clone and install this demo.
 # Install
 
 ### Latest published version on npm (with Cordova CLI >= 5.0.0)
-`cordova plugin add cordova-plugin-app-update`
+`cordova plugin add cordova-plugin-app-update --save`
 
 # Usage
  - Simple:
