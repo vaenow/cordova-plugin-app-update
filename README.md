@@ -1,5 +1,9 @@
 
-![travis](https://travis-ci.org/vaenow/cordova-plugin-app-update.svg?branch=master)
+
+![travis](https://travis-ci.org/vaenow/cordova-plugin-app-update.svg?branch=master)  ![issue closed](http://issuestats.com/github/kensho/check-more-types/badge/issue)
+
+[![NPM](https://nodei.co/npm/cordova-plugin-app-update.png?downloads=true&downloadRank=true)](https://nodei.co/npm/cordova-plugin-app-update/)
+
 
 # cordova-plugin-app-update
 App updater for Cordova/PhoneGap
