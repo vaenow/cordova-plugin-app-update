@@ -1,6 +1,6 @@
 
 
-![travis](https://travis-ci.org/vaenow/cordova-plugin-app-update.svg?branch=master)  ![issue closed](http://issuestats.com/github/kensho/check-more-types/badge/issue)
+![travis](https://travis-ci.org/vaenow/cordova-plugin-app-update.svg?branch=master)  
 
 [![NPM](https://nodei.co/npm/cordova-plugin-app-update.png?downloads=true&downloadRank=true)](https://nodei.co/npm/cordova-plugin-app-update/)
 
