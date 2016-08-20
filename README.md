@@ -15,6 +15,9 @@ Just clone and install this demo.
 [cordova-plugin-app-update-DEMO](https://github.com/vaenow/cordova-plugin-app-update-demo)
 :tada:
 
+ * 如果喜欢它，请别忘了给我一颗鼓励的星
+ * Support me a `Star` if it is necessary.  :+1:
+ 
 # Preview
 ![enter image description here](https://raw.githubusercontent.com/vaenow/cordova-plugin-app-update/master/res/img/Screenshot_2015-10-31-13-42-13.jpg)
 
@@ -79,4 +82,4 @@ MIT
 
 * Please let me know if you have any questions.
 
-* Support me a `Star` if it is necessary.  :+1:
+
