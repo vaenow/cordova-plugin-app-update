@@ -1,5 +1,9 @@
 
-![travis](https://travis-ci.org/vaenow/cordova-plugin-app-update.svg?branch=master)
+
+![travis](https://travis-ci.org/vaenow/cordova-plugin-app-update.svg?branch=master)  
+
+[![NPM](https://nodei.co/npm/cordova-plugin-app-update.png?downloads=true&downloadRank=true)](https://nodei.co/npm/cordova-plugin-app-update/)
+
 
 # cordova-plugin-app-update
 App updater for Cordova/PhoneGap
@@ -11,6 +15,9 @@ Just clone and install this demo.
 [cordova-plugin-app-update-DEMO](https://github.com/vaenow/cordova-plugin-app-update-demo)
 :tada:
 
+ * 如果喜欢它，请别忘了给我一颗鼓励的星
+ * Support me a `Star` if it is necessary.  :+1:
+ 
 # Preview
 ![enter image description here](https://raw.githubusercontent.com/vaenow/cordova-plugin-app-update/master/res/img/Screenshot_2015-10-31-13-42-13.jpg)
 
@@ -21,7 +28,7 @@ Just clone and install this demo.
 # Install
 
 ### Latest published version on npm (with Cordova CLI >= 5.0.0)
-`cordova plugin add cordova-plugin-app-update`
+`cordova plugin add cordova-plugin-app-update --save`
 
 # Usage
  - Simple:
@@ -75,4 +82,4 @@ MIT
 
 * Please let me know if you have any questions.
 
-* Support me a `Star` if it is necessary.  :+1:
+
