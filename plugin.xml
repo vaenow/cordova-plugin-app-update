@@ -25,6 +25,8 @@
 
         <source-file src="src/android" target-dir="src/com/vaenow/appupdate"/>
         <source-file src="res/values/appupdate_strings.xml" target-dir="res/values"/>
+        <source-file src="res/values-en/appupdate_strings.xml" target-dir="res/values-en"/>
+        <source-file src="res/values-zh/appupdate_strings.xml" target-dir="res/values-zh"/>
         <source-file src="res/layout/appupdate_progress.xml" target-dir="res/layout"/>
     </platform>
 </plugin>
