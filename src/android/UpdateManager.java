@@ -1,5 +1,6 @@
 package com.vaenow.appupdate.android;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -71,6 +72,9 @@ public class UpdateManager {
                 case Constants.VERSION_COMPARE_START:
                     compareVersions();
                     break;
+                case Constants.VERSION_UPDATING:
+                    callbackContext.success(Utils.makeJSON(Constants.VERSION_UPDATING, "success, version updating."));
+                    break;
                 case Constants.VERSION_NEED_UPDATE:
                     callbackContext.success(Utils.makeJSON(Constants.VERSION_NEED_UPDATE, "success, need date."));
                     break;
@@ -114,6 +118,7 @@ public class UpdateManager {
         if (versionCodeLocal != versionCodeRemote) {
             if(isDownloading) {
                 msgBox.showDownloadDialog(null);
+                mHandler.sendEmptyMessage(Constants.VERSION_UPDATING);
             } else {
                 LOG.d(TAG, "need update");
                 // 显示提示对话框
@@ -135,7 +140,7 @@ public class UpdateManager {
             // 显示下载对话框
             Map<String, Object> ret = msgBox.showDownloadDialog(downloadDialogOnClick);
             // 下载文件
-            downloadApk((Dialog)ret.get("dialog"), (ProgressBar)ret.get("progress"));
+            downloadApk((AlertDialog)ret.get("dialog"), (ProgressBar)ret.get("progress"));
         }
     };
 
@@ -160,7 +165,7 @@ public class UpdateManager {
      * @param mProgress
      * @param mDownloadDialog
      */
-    private void downloadApk(Dialog mDownloadDialog, ProgressBar mProgress) {
+    private void downloadApk(AlertDialog mDownloadDialog, ProgressBar mProgress) {
         LOG.d(TAG, "downloadApk" + mProgress);
 
         // 启动新线程下载软件

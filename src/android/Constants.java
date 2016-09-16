@@ -15,6 +15,7 @@ public interface Constants {
     int VERSION_COMPARE_START = 200;
     int VERSION_NEED_UPDATE = 201;
     int VERSION_UP_TO_UPDATE = 202;
+    int VERSION_UPDATING = 203;
 
     /**
      * 版本解析错误
