@@ -3,6 +3,8 @@ package com.vaenow.appupdate.android;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
@@ -47,10 +49,9 @@ public class DownloadHandler extends Handler {
                 mProgress.setProgress(progress);
                 break;
             case Constants.DOWNLOAD_FINISH:
+                updateMsgDialog();
                 // 安装文件
                 installApk();
-                mDownloadDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
-                        .setText(msgHelper.getString(MsgHelper.DOWNLOAD_COMPLETE));
                 break;
             default:
                 break;
@@ -60,6 +61,21 @@ public class DownloadHandler extends Handler {
     public void updateProgress(int progress) {
         this.progress = progress;
     }
+
+    public void updateMsgDialog() {
+        mDownloadDialog.setTitle(msgHelper.getString(MsgHelper.DOWNLOAD_COMPLETE_TITLE));
+        mDownloadDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+                .setText(msgHelper.getString(MsgHelper.DOWNLOAD_COMPLETE_NEG_BTN));
+        mDownloadDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+                .setOnClickListener(downloadCompleteOnClick);
+    }
+
+    private OnClickListener downloadCompleteOnClick = new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            installApk();
+        }
+    };
 
     /**
      * 安装APK文件

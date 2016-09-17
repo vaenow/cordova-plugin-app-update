@@ -2,7 +2,6 @@ package com.vaenow.appupdate.android;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Environment;
 import android.widget.ProgressBar;
 

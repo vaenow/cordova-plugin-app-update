@@ -9,7 +9,9 @@ import android.os.Handler;
 import android.widget.ProgressBar;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.LOG;
+import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +46,11 @@ public class UpdateManager {
     private CheckUpdateThread checkUpdateThread;
     private DownloadApkThread downloadApkThread;
 
+    public UpdateManager(Context context) {
+        this.mContext = context;
+        packageName = mContext.getPackageName();
+        msgBox = new MsgBox(mContext);
+    }
 
     public UpdateManager(JSONArray args, CallbackContext callbackContext, Context context) {
         this(args, callbackContext, context, "http://192.168.3.102:8080/update_apk/version.xml");
@@ -56,6 +63,14 @@ public class UpdateManager {
         this.mContext = context;
         packageName = mContext.getPackageName();
         msgBox = new MsgBox(mContext);
+    }
+
+    public UpdateManager options(JSONArray args, CallbackContext callbackContext)
+            throws JSONException {
+        this.args = args;
+        this.callbackContext = callbackContext;
+        this.updateXmlUrl = args.getString(0);
+        return this;
     }
 
     private Handler mHandler = new Handler(){
@@ -93,6 +108,7 @@ public class UpdateManager {
                 default:
                     callbackContext.error(Utils.makeJSON(Constants.UNKNOWN_ERROR, "unknown error"));
             }
+
         }
     };
 
