@@ -1,6 +1,8 @@
 package com.vaenow.appupdate.android;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
@@ -25,8 +27,12 @@ public class DownloadHandler extends Handler {
     private String mSavePath;
     /* 保存解析的XML信息 */
     private HashMap<String, String> mHashMap;
+    private MsgHelper msgHelper;
+    private AlertDialog mDownloadDialog;
 
-    public DownloadHandler(Context mContext, ProgressBar mProgress, String mSavePath, HashMap<String, String> mHashMap) {
+    public DownloadHandler(Context mContext, ProgressBar mProgress, AlertDialog mDownloadDialog, String mSavePath, HashMap<String, String> mHashMap) {
+        this.msgHelper = new MsgHelper(mContext.getPackageName(), mContext.getResources());
+        this.mDownloadDialog = mDownloadDialog;
         this.mContext = mContext;
         this.mProgress = mProgress;
         this.mSavePath = mSavePath;
@@ -43,6 +49,8 @@ public class DownloadHandler extends Handler {
             case Constants.DOWNLOAD_FINISH:
                 // 安装文件
                 installApk();
+                mDownloadDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+                        .setText(msgHelper.getString(MsgHelper.DOWNLOAD_COMPLETE));
                 break;
             default:
                 break;

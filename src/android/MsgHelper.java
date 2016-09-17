@@ -16,7 +16,7 @@ public class MsgHelper {
     public static String UPDATE_PROGRESS = "update_progress";
     public static String UPDATING = "updating";
     public static String UPDATE_BG = "update_bg";
-    public static String UPDATE_COMPLETE = "update_complete";
+    public static String DOWNLOAD_COMPLETE = "download_complete";
     public static String UPDATE_ERROR_TITLE = "update_error_title";
     public static String UPDATE_ERROR_MESSAGE = "update_error_message";
     public static String UPDATE_ERROR_YES_BTN = "update_error_yes_btn";

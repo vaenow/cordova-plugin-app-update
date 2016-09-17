@@ -7,6 +7,7 @@
     <string name="updating">Updating</string>
     <string name="update_cancel">Cancel</string>
     <string name="update_bg">Update in background</string>
+    <string name="download_complete">Download complete</string>
 
     <string name="update_error_title">Error</string>
     <string name="update_error_message">The current network is unavailable , please check your network settings.</string>

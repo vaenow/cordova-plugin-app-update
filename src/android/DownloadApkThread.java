@@ -3,7 +3,6 @@ package com.vaenow.appupdate.android;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Handler;
 import android.os.Environment;
 import android.widget.ProgressBar;
 
@@ -28,22 +27,17 @@ public class DownloadApkThread implements Runnable {
     private String mSavePath;
     /* 记录进度条数量 */
     private int progress;
-    /* 更新进度条 */
-    private ProgressBar mProgress;
     /* 是否取消更新 */
     private boolean cancelUpdate = false;
     private AlertDialog mDownloadDialog;
     private DownloadHandler downloadHandler;
-    private MsgHelper msgHelper;
 
     public DownloadApkThread(Context mContext, ProgressBar mProgress, AlertDialog mDownloadDialog, HashMap<String, String> mHashMap) {
-        this.mProgress = mProgress;
         this.mDownloadDialog = mDownloadDialog;
         this.mHashMap = mHashMap;
 
-        this.msgHelper = new MsgHelper(mContext.getPackageName(), mContext.getResources());
         this.mSavePath = Environment.getExternalStorageDirectory() + "/" + "download"; // SD Path
-        this.downloadHandler = new DownloadHandler(mContext, mProgress, mSavePath, mHashMap);
+        this.downloadHandler = new DownloadHandler(mContext, mProgress, mDownloadDialog, this.mSavePath, mHashMap);
     }
 
 
@@ -95,8 +89,6 @@ public class DownloadApkThread implements Runnable {
                     if (numread <= 0) {
                         // 下载完成
                         downloadHandler.sendEmptyMessage(Constants.DOWNLOAD_FINISH);
-                        mDownloadDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
-                                .setText(msgHelper.getString(MsgHelper.UPDATE_COMPLETE));
                         break;
                     }
                     // 写入文件

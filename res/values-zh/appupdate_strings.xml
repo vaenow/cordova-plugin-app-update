@@ -7,6 +7,7 @@
     <string name="updating">正在更新</string>
     <string name="update_cancel">取消</string>
     <string name="update_bg">转到后台更新</string>
+    <string name="download_complete">下载完毕</string>
 
     <string name="update_error_title">错误</string>
     <string name="update_error_message">当前网络不可用，请检查你的网络设置。</string>
