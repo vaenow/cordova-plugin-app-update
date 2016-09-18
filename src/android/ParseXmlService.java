@@ -13,12 +13,10 @@ import java.util.HashMap;
 /**
  * Created by LuoWen on 2015/10/27.
  */
-public class ParseXmlService
-{
-    public HashMap<String, String> parseXml(InputStream inStream) throws Exception
-    {
+public class ParseXmlService {
+    public HashMap<String, String> parseXml(InputStream inStream) throws Exception {
         HashMap<String, String> hashMap = new HashMap<String, String>();
-        
+
         // 实例化一个文档构建器工厂
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         // 通过文档构建器工厂获取一个文档构建器
@@ -29,27 +27,22 @@ public class ParseXmlService
         Element root = document.getDocumentElement();
         //获得所有子节点
         NodeList childNodes = root.getChildNodes();
-        for (int j = 0; j < childNodes.getLength(); j++)
-        {
+        for (int j = 0; j < childNodes.getLength(); j++) {
             //遍历子节点
             Node childNode = (Node) childNodes.item(j);
-            if (childNode.getNodeType() == Node.ELEMENT_NODE)
-            {
+            if (childNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element childElement = (Element) childNode;
                 //版本号
-                if ("version".equals(childElement.getNodeName()))
-                {
-                    hashMap.put("version",childElement.getFirstChild().getNodeValue());
+                if ("version".equals(childElement.getNodeName())) {
+                    hashMap.put("version", childElement.getFirstChild().getNodeValue());
                 }
                 //软件名称
-                else if (("name".equals(childElement.getNodeName())))
-                {
-                    hashMap.put("name",childElement.getFirstChild().getNodeValue());
+                else if (("name".equals(childElement.getNodeName()))) {
+                    hashMap.put("name", childElement.getFirstChild().getNodeValue());
                 }
                 //下载地址
-                else if (("url".equals(childElement.getNodeName())))
-                {
-                    hashMap.put("url",childElement.getFirstChild().getNodeValue());
+                else if (("url".equals(childElement.getNodeName()))) {
+                    hashMap.put("url", childElement.getFirstChild().getNodeValue());
                 }
             }
         }

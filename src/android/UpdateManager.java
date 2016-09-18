@@ -72,7 +72,7 @@ public class UpdateManager {
         return this;
     }
 
-    private Handler mHandler = new Handler(){
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(android.os.Message msg) {
             super.handleMessage(msg);
@@ -139,7 +139,7 @@ public class UpdateManager {
         //比对版本号
         //检查软件是否有更新版本
         if (versionCodeLocal != versionCodeRemote) {
-            if(isDownloading) {
+            if (isDownloading) {
                 msgBox.showDownloadDialog(null, null, null);
                 mHandler.sendEmptyMessage(Constants.VERSION_UPDATING);
             } else {
@@ -171,7 +171,7 @@ public class UpdateManager {
                 downloadDialogOnClickPos,
                 downloadDialogOnClickNeu);
         // 下载文件
-        downloadApk((AlertDialog)ret.get("dialog"), (ProgressBar)ret.get("progress"));
+        downloadApk((AlertDialog) ret.get("dialog"), (ProgressBar) ret.get("progress"));
     }
 
     /**
@@ -217,6 +217,7 @@ public class UpdateManager {
 
     /**
      * 下载apk文件
+     *
      * @param mProgress
      * @param mDownloadDialog
      */

@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Created by LuoWen on 2016/1/20.
  */
-public class MsgBox{
+public class MsgBox {
     public static final String TAG = "MsgBox";
     private Context mContext;
     private MsgHelper msgHelper;
@@ -34,6 +34,7 @@ public class MsgBox{
 
     /**
      * 显示软件更新对话框
+     *
      * @param onClickListener
      */
     public Dialog showNoticeDialog(OnClickListener onClickListener) {
@@ -49,11 +50,10 @@ public class MsgBox{
         }
 
         if (!noticeDialog.isShowing()) noticeDialog.show();
-        
+
         noticeDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
         return noticeDialog;
     }
-
 
 
     /**
@@ -62,7 +62,7 @@ public class MsgBox{
     public Map<String, Object> showDownloadDialog(OnClickListener onClickListenerNeg,
                                                   OnClickListener onClickListenerPos,
                                                   OnClickListener onClickListenerNeu) {
-        if(downloadDialog == null) {
+        if (downloadDialog == null) {
             LOG.d(TAG, "showDownloadDialog");
 
             // 构造软件下载对话框
@@ -84,7 +84,7 @@ public class MsgBox{
             downloadDialog = builder.create();
         }
 
-        if(!downloadDialog.isShowing()) downloadDialog.show();
+        if (!downloadDialog.isShowing()) downloadDialog.show();
 
         downloadDialog.setTitle(msgHelper.getString(MsgHelper.UPDATING));
         downloadDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setVisibility(View.VISIBLE); //Update in background
@@ -100,10 +100,11 @@ public class MsgBox{
 
     /**
      * 错误提示窗口
+     *
      * @param errorDialogOnClick
      */
     public Dialog showErrorDialog(OnClickListener errorDialogOnClick) {
-        if(this.errorDialog == null) {
+        if (this.errorDialog == null) {
             LOG.d(TAG, "initErrorDialog");
             // 构造对话框
             AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
@@ -114,7 +115,7 @@ public class MsgBox{
             errorDialog = builder.create();
         }
 
-        if(!errorDialog.isShowing()) errorDialog.show();
+        if (!errorDialog.isShowing()) errorDialog.show();
 
         return errorDialog;
     }

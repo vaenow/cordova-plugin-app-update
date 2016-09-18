@@ -28,7 +28,7 @@ public class CheckAppUpdate extends CordovaPlugin {
     public UpdateManager getUpdateManager(JSONArray args, CallbackContext callbackContext)
             throws JSONException {
 
-        if(this.updateManager == null) {
+        if (this.updateManager == null) {
             this.updateManager = new UpdateManager(this.cordova.getActivity(), this.cordova);
         }
 
