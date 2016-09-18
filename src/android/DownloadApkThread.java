@@ -3,6 +3,7 @@ package com.vaenow.appupdate.android;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Environment;
+import android.os.Handler;
 import android.widget.ProgressBar;
 
 import java.io.File;
@@ -30,10 +31,12 @@ public class DownloadApkThread implements Runnable {
     private boolean cancelUpdate = false;
     private AlertDialog mDownloadDialog;
     private DownloadHandler downloadHandler;
+    private Handler mHandler;
 
-    public DownloadApkThread(Context mContext, ProgressBar mProgress, AlertDialog mDownloadDialog, HashMap<String, String> mHashMap) {
+    public DownloadApkThread(Context mContext, Handler mHandler, ProgressBar mProgress, AlertDialog mDownloadDialog, HashMap<String, String> mHashMap) {
         this.mDownloadDialog = mDownloadDialog;
         this.mHashMap = mHashMap;
+        this.mHandler = mHandler;
 
         this.mSavePath = Environment.getExternalStorageDirectory() + "/" + "download"; // SD Path
         this.downloadHandler = new DownloadHandler(mContext, mProgress, mDownloadDialog, this.mSavePath, mHashMap);
@@ -44,7 +47,7 @@ public class DownloadApkThread implements Runnable {
     public void run() {
         downloadAndInstall();
         // 取消下载对话框显示
-        mDownloadDialog.dismiss();
+        // mDownloadDialog.dismiss();
     }
 
     public void cancelBuildUpdate() {
@@ -88,6 +91,7 @@ public class DownloadApkThread implements Runnable {
                     if (numread <= 0) {
                         // 下载完成
                         downloadHandler.sendEmptyMessage(Constants.DOWNLOAD_FINISH);
+                        mHandler.sendEmptyMessage(Constants.DOWNLOAD_FINISH);
                         break;
                     }
                     // 写入文件

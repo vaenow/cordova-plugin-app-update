@@ -3,12 +3,12 @@ package com.vaenow.appupdate.android;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ProgressBar;
 
 import java.io.File;
@@ -63,10 +63,12 @@ public class DownloadHandler extends Handler {
     }
 
     public void updateMsgDialog() {
+        mDownloadDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setVisibility(View.GONE); //Update in background
+        mDownloadDialog.getButton(DialogInterface.BUTTON_NEUTRAL).setVisibility(View.VISIBLE); //Install Manually
+        mDownloadDialog.getButton(DialogInterface.BUTTON_POSITIVE).setVisibility(View.VISIBLE); //Download Again
+
         mDownloadDialog.setTitle(msgHelper.getString(MsgHelper.DOWNLOAD_COMPLETE_TITLE));
-        mDownloadDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
-                .setText(msgHelper.getString(MsgHelper.DOWNLOAD_COMPLETE_NEG_BTN));
-        mDownloadDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+        mDownloadDialog.getButton(DialogInterface.BUTTON_NEUTRAL)
                 .setOnClickListener(downloadCompleteOnClick);
     }
 

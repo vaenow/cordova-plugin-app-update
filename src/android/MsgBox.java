@@ -6,10 +6,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import org.apache.cordova.LOG;
 
@@ -60,9 +58,10 @@ public class MsgBox{
 
     /**
      * 显示软件下载对话框
-     * @param onClickListener
      */
-    public Map<String, Object> showDownloadDialog(OnClickListener onClickListener) {
+    public Map<String, Object> showDownloadDialog(OnClickListener onClickListenerNeg,
+                                                  OnClickListener onClickListenerPos,
+                                                  OnClickListener onClickListenerNeu) {
         if(downloadDialog == null) {
             LOG.d(TAG, "showDownloadDialog");
 
@@ -79,11 +78,18 @@ public class MsgBox{
             // 取消更新
             //builder.setNegativeButton(msgHelper.getString("update_cancel"), onClickListener);
             //转到后台更新
-            builder.setNegativeButton(msgHelper.getString(MsgHelper.UPDATE_BG), onClickListener);
+            builder.setNegativeButton(msgHelper.getString(MsgHelper.UPDATE_BG), onClickListenerNeg);
+            builder.setNeutralButton(msgHelper.getString(MsgHelper.DOWNLOAD_COMPLETE_NEU_BTN), onClickListenerNeu);
+            builder.setPositiveButton(msgHelper.getString(MsgHelper.DOWNLOAD_COMPLETE_POS_BTN), onClickListenerPos);
             downloadDialog = builder.create();
         }
 
         if(!downloadDialog.isShowing()) downloadDialog.show();
+
+        downloadDialog.setTitle(msgHelper.getString(MsgHelper.UPDATING));
+        downloadDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setVisibility(View.VISIBLE); //Update in background
+        downloadDialog.getButton(DialogInterface.BUTTON_NEUTRAL).setVisibility(View.GONE); //Install Manually
+        downloadDialog.getButton(DialogInterface.BUTTON_POSITIVE).setVisibility(View.GONE); //Download Again
 
         downloadDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
         Map<String, Object> ret = new HashMap<String, Object>();

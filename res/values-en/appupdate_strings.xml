@@ -8,7 +8,8 @@
     <string name="update_cancel">Cancel</string>
     <string name="update_bg">Update in background</string>
     <string name="download_complete_title">Download complete</string>
-    <string name="download_complete_neg_btn">Install Manually</string>
+    <string name="download_complete_pos_btn">Download again</string>
+    <string name="download_complete_neu_btn">Install manually</string>
 
     <string name="update_error_title">Error</string>
     <string name="update_error_message">The current network is unavailable , please check your network settings.</string>

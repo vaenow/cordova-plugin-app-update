@@ -8,6 +8,8 @@ public interface Constants {
     int DOWNLOAD = 1;
     /* 下载结束 */
     int DOWNLOAD_FINISH = 2;
+    /* 点击开始下载按钮*/
+    int DOWNLOAD_CLICK_START = 3;
 
     /**
      * 对比版本号

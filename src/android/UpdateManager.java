@@ -1,15 +1,14 @@
 package com.vaenow.appupdate.android;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Handler;
 import android.widget.ProgressBar;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.LOG;
-import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -35,18 +34,18 @@ public class UpdateManager {
      */
     private String updateXmlUrl;
     private JSONArray args;
+    private CordovaInterface cordova;
     private CallbackContext callbackContext;
     private String packageName;
     private Context mContext;
     private MsgBox msgBox;
     private Boolean isDownloading = false;
-
     private List<Version> queue = new ArrayList<Version>(1);
-
     private CheckUpdateThread checkUpdateThread;
     private DownloadApkThread downloadApkThread;
 
-    public UpdateManager(Context context) {
+    public UpdateManager(Context context, CordovaInterface cordova) {
+        this.cordova = cordova;
         this.mContext = context;
         packageName = mContext.getPackageName();
         msgBox = new MsgBox(mContext);
@@ -87,6 +86,12 @@ public class UpdateManager {
                 case Constants.VERSION_COMPARE_START:
                     compareVersions();
                     break;
+                case Constants.DOWNLOAD_CLICK_START:
+                    emitNoticeDialogOnClick();
+                    break;
+                case Constants.DOWNLOAD_FINISH:
+                    isDownloading = false;
+                    break;
                 case Constants.VERSION_UPDATING:
                     callbackContext.success(Utils.makeJSON(Constants.VERSION_UPDATING, "success, version updating."));
                     break;
@@ -117,8 +122,10 @@ public class UpdateManager {
      */
     public void checkUpdate() {
         LOG.d(TAG, "checkUpdate..");
+
         checkUpdateThread = new CheckUpdateThread(mContext, mHandler, queue, packageName, updateXmlUrl);
-        new Thread(checkUpdateThread).start();
+        this.cordova.getThreadPool().execute(checkUpdateThread);
+        //new Thread(checkUpdateThread).start();
     }
 
     /**
@@ -133,7 +140,7 @@ public class UpdateManager {
         //检查软件是否有更新版本
         if (versionCodeLocal != versionCodeRemote) {
             if(isDownloading) {
-                msgBox.showDownloadDialog(null);
+                msgBox.showDownloadDialog(null, null, null);
                 mHandler.sendEmptyMessage(Constants.VERSION_UPDATING);
             } else {
                 LOG.d(TAG, "need update");
@@ -152,15 +159,47 @@ public class UpdateManager {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             dialog.dismiss();
-            isDownloading = true;
-            // 显示下载对话框
-            Map<String, Object> ret = msgBox.showDownloadDialog(downloadDialogOnClick);
-            // 下载文件
-            downloadApk((AlertDialog)ret.get("dialog"), (ProgressBar)ret.get("progress"));
+            mHandler.sendEmptyMessage(Constants.DOWNLOAD_CLICK_START);
         }
     };
 
-    private OnClickListener downloadDialogOnClick = new OnClickListener() {
+    private void emitNoticeDialogOnClick() {
+        isDownloading = true;
+        // 显示下载对话框
+        Map<String, Object> ret = msgBox.showDownloadDialog(
+                downloadDialogOnClickNeg,
+                downloadDialogOnClickPos,
+                downloadDialogOnClickNeu);
+        // 下载文件
+        downloadApk((AlertDialog)ret.get("dialog"), (ProgressBar)ret.get("progress"));
+    }
+
+    /**
+     * 手动安装
+     * Download again
+     */
+    private OnClickListener downloadDialogOnClickNeu = new OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            //Implemented in DownloadHandler.java
+        }
+    };
+    /**
+     * 重新下载
+     * Download again
+     */
+    private OnClickListener downloadDialogOnClickPos = new OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+            mHandler.sendEmptyMessage(Constants.DOWNLOAD_CLICK_START);
+        }
+    };
+    /**
+     * 转到后台更新
+     * Update in background
+     */
+    private OnClickListener downloadDialogOnClickNeg = new OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             dialog.dismiss();
@@ -185,8 +224,9 @@ public class UpdateManager {
         LOG.d(TAG, "downloadApk" + mProgress);
 
         // 启动新线程下载软件
-        downloadApkThread = new DownloadApkThread(mContext, mProgress, mDownloadDialog, checkUpdateThread.getMHashMap());
-        new Thread(downloadApkThread).start();
+        downloadApkThread = new DownloadApkThread(mContext, mHandler, mProgress, mDownloadDialog, checkUpdateThread.getMHashMap());
+        this.cordova.getThreadPool().execute(downloadApkThread);
+        // new Thread(downloadApkThread).start();
     }
 
 }

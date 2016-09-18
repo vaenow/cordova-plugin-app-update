@@ -1,11 +1,9 @@
 package com.vaenow.appupdate.android;
 
-import android.app.Activity;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * Created by LuoWen on 2015/10/27.
@@ -31,7 +29,7 @@ public class CheckAppUpdate extends CordovaPlugin {
             throws JSONException {
 
         if(this.updateManager == null) {
-            this.updateManager = new UpdateManager(this.cordova.getActivity());
+            this.updateManager = new UpdateManager(this.cordova.getActivity(), this.cordova);
         }
 
         return this.updateManager.options(args, callbackContext);
