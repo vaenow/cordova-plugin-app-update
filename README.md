@@ -71,6 +71,39 @@ versionName | versionCode
 </update>
 ```
 
+### `checkAppUpdate` code
+
+```java
+    /**
+     * 对比版本号
+     */
+    int VERSION_NEED_UPDATE = 201; //检查到需要更新； need update
+    int VERSION_UP_TO_UPDATE = 202; //软件是不需要更新；version up to date
+    int VERSION_UPDATING = 203; //软件正在更新；version is updating
+
+    /**
+     * 版本解析错误
+     */
+    int VERSION_RESOLVE_FAIL = 301; //版本文件解析错误 version-xml file resolve fail
+    int VERSION_COMPARE_FAIL = 302; //版本文件对比错误 version-xml file compare fail
+
+    /**
+     * 网络错误
+     */
+    int REMOTE_FILE_NOT_FOUND = 404;
+    int NETWORK_ERROR = 405;
+
+    /**
+     * 没有相应的方法
+     */
+    int NO_SUCH_METHOD = 501;
+
+    /**
+     * 未知错误
+     */
+    int UNKNOWN_ERROR = 901;
+```
+
 
 # Platforms
 Android only
