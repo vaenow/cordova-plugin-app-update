@@ -11,6 +11,7 @@
     </js-module>
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
+            <framework src="com.android.support:support-v4:+" value="gradle" />
             <feature name="AppUpdate">
                 <param name="android-package" value="com.vaenow.appupdate.android.CheckAppUpdate"/>
                 <param name="onload" value="true" />  <!-- Must Have -->
