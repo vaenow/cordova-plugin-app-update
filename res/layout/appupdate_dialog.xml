@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="检测到新版本v2.0"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.5"
+        android:padding="20dp"
+        android:text="1.新增提醒功能\n2.优化了页面"
+        android:textColor="#000000"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5px" >
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/about_version_btn"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15px"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:text="取消" />
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="5dp" />
+
+        <Button
+            android:id="@+id/btn_update"
+            style="@style/about_version_btn"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:text="更新" />
+    </LinearLayout>
+</LinearLayout>
