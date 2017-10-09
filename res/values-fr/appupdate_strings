@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="update_latest">Vous possédez la dernière version disponible!</string>
+    <string name="update_title">Nouvelle Mise à Jour</string>
+    <string name="update_message">Vous devez mettre l'application à jour！</string>
+    <string name="update_update_btn">Mise à Jour</string>
+    <string name="updating">MàJ en cours</string>
+    <string name="update_cancel">Annuler</string>
+    <string name="update_bg">Mettre à jour en fond...</string>
+    <string name="download_complete_title">Mise à jour terminée</string>
+    <string name="download_complete_pos_btn">Re-télécharger</string>
+    <string name="download_complete_neu_btn">Installer manuellement</string>
+
+    <string name="update_error_title">Erreur</string>
+    <string name="update_error_message">Connection internet indisponible, merci de vérifier votre connexion.</string>
+    <string name="update_error_yes_btn">OK</string>
+</resources>
