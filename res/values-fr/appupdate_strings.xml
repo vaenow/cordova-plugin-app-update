@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="update_latest">Mise à jour dernière</string>
+    <string name="update_title">Mise à jour de logiciels</string>
+    <string name="update_message">Mise à jour de messenger</string>
+    <string name="update_update_btn">Mise à jour</string>
+    <string name="updating">En train de mise à jour</string>
+    <string name="update_cancel">Annuler</string>
+    <string name="update_bg">Mise à jour en backend</string>
+    <string name="download_complete_title">Télécharger complé</string>
+    <string name="download_complete_pos_btn">Télécharger recommence</string>
+    <string name="download_complete_neu_btn">Installer manuelle</string>
+
+    <string name="update_error_title">Erreur</string>
+    <string name="update_error_message">Le réseau  n'est pas disponible pour l'instant, vérifiez les paramètres de votre réseau。</string>
+    <string name="update_error_yes_btn">C'est noté</string>
+</resources>
