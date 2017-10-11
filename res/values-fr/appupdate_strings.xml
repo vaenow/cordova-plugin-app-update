@@ -12,6 +12,6 @@
     <string name="download_complete_neu_btn">Installer manuelle</string>
 
     <string name="update_error_title">Erreur</string>
-    <string name="update_error_message">Le réseau  n'est pas disponible pour l'instant, vérifiez les paramètres de votre réseau。</string>
-    <string name="update_error_yes_btn">C'est noté</string>
+    <string name="update_error_message">Le réseau  n\'est pas disponible pour l\'instant, vérifiez les paramètres de votre réseau。</string>
+    <string name="update_error_yes_btn">C\'est noté</string>
 </resources>
