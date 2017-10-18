@@ -31,7 +31,7 @@
                 android:grantUriPermissions="true">
                 <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/provider_paths"/>
+                    android:resource="@xml/appupdate_paths"/>
             </provider>
         </config-file>
 
@@ -41,6 +41,6 @@
         <source-file src="res/values-zh/appupdate_strings.xml" target-dir="res/values-zh"/>
         <source-file src="res/values-fr/appupdate_strings.xml" target-dir="res/values-fr"/>
         <source-file src="res/layout/appupdate_progress.xml" target-dir="res/layout"/>
-        <source-file src="res/xml/provider_paths.xml" target-dir="res/xml" />
+        <source-file src="res/xml/appupdate_paths.xml" target-dir="res/xml" />
     </platform>
 </plugin>
