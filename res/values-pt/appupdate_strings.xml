@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="update_latest">Agora você tem a última versão</string>
+    <string name="update_title">Nova atualização</string>
+    <string name="update_message">O aplicativo precisa ser atualizado !</string>
+    <string name="update_update_btn">Atualizar</string>
+    <string name="updating">Atualizando</string>
+    <string name="update_cancel">Cancelar</string>
+    <string name="update_bg">Atualizar em segundo plano</string>
+    <string name="download_complete">Download completo</string>
+    <string name="download_complete_title">Download completo</string>
+    <string name="download_complete_pos_btn">Baixar novamente</string>
+    <string name="download_complete_neu_btn">Instalar manualmente</string>
+
+    <string name="update_error_title">Erro</string>
+    <string name="update_error_message">A rede não está disponível, por favor verifique suas configurações de conexão.</string>
+    <string name="update_error_yes_btn">OK</string>
+</resources>
