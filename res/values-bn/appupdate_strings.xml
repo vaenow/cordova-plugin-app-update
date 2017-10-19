@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="update_latest">এখন অ্যাপের সর্বশেষ সংস্করণ আছে</string>
+    <string name="update_title">নতুন সংস্করণ</string>
+    <string name="update_message">অ্যাপের নতুন সংস্করণ দরকার</string>
+    <string name="update_update_btn">আপডেট করুন</string>
+    <string name="updating">আপডেট করা হচ্ছে</string>
+    <string name="update_cancel">দরকার নাই</string>
+    <string name="update_bg">অ্যাপ ব্যাবহার করার মাঝে ডাউনলোড করুন</string>
+    <string name="download_complete">ডাউনলোড পূর্ণ</string>
+    <string name="download_complete_title">ডাউনলোড পূর্ণ</string>
+    <string name="download_complete_pos_btn">আবার ডাউনলোড করুন</string>
+    <string name="download_complete_neu_btn">নিজে ইন্সটল করুন</string>
+
+    <string name="update_error_title">সমস্যা</string>
+    <string name="update_error_message">এই মুহূর্তে Data চালু নাই অথবা নেটওয়ার্ক পাওয়া জাচ্ছে না</string>
+    <string name="update_error_yes_btn">ঠিকাছে</string>
+</resources>
