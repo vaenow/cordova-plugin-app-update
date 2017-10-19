@@ -44,5 +44,7 @@
         <source-file src="res/values-bn/appupdate_strings.xml" target-dir="res/values-bn"/>
         <source-file src="res/layout/appupdate_progress.xml" target-dir="res/layout"/>
         <source-file src="res/xml/appupdate_paths.xml" target-dir="res/xml" />
+        
+        <framework src="com.android.support:support-v4:24.1.1+" />
     </platform>
 </plugin>
