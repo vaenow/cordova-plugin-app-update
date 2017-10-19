@@ -26,7 +26,7 @@
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
              <provider
                 android:name="com.vaenow.appupdate.android.GenericFileProvider"
-                android:authorities="com.vaenow.appupdate.android.provider"
+                android:authorities="com.vaenow.appupdate.android.provider.${applicationId}"
                 android:exported="false"
                 android:grantUriPermissions="true">
                 <meta-data
