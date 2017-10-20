@@ -43,6 +43,14 @@ var updateUrl = "http://192.168.0.1/version.xml";
 appUpdate.checkAppUpdate(onSuccess, onFail, updateUrl);
 ```
 
+- Auth download  [MORE](https://github.com/vaenow/cordova-plugin-app-update/pull/62)
+```js
+appUpdate.checkAppUpdate(onSuccess, onFail, updateUrl, {
+    'authType' : 'basic',
+    'username' : 'test',
+    'password' : 'test'
+})
+```
 
 ### versionCode
 
@@ -103,7 +111,6 @@ versionName | versionCode
      */
     int UNKNOWN_ERROR = 901;
 ```
-
 
 # Platforms
 Android only
