@@ -1,5 +1,6 @@
 package com.vaenow.appupdate.android;
 
+import android.AuthenticationOptions;
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Handler;
@@ -30,7 +31,7 @@ public class CheckUpdateThread implements Runnable {
     private List<Version> queue;
     private String packageName;
     private String updateXmlUrl;
-    private JSONObject options;
+    private AuthenticationOptions authentication;
     private Handler mHandler;
 
     private void setMHashMap(HashMap<String, String> mHashMap) {
@@ -46,7 +47,7 @@ public class CheckUpdateThread implements Runnable {
         this.queue = queue;
         this.packageName = packageName;
         this.updateXmlUrl = updateXmlUrl;
-        this.options = options;
+        this.authentication = new AuthenticationOptions(options);
         this.mHandler = mHandler;
     }
 
@@ -80,10 +81,11 @@ public class CheckUpdateThread implements Runnable {
         try {
             url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();//利用HttpURLConnection对象,我们可以从网络中获取网页数据.
-            if(this.options.getString("authType").equals("basic")){
-                String encoded = Base64.encodeToString((this.options.getString("username")+":"+this.options.getString("password")).getBytes(StandardCharsets.UTF_8), Base64.DEFAULT);  //Java 8
-                conn.setRequestProperty("Authorization", "Basic "+encoded);
+
+            if(this.authentication.hasCredentials()){
+                conn.setRequestProperty("Authorization", this.authentication.getEncodedAuthorization());
             }
+
             conn.setDoInput(true);
             conn.connect();
             is = conn.getInputStream(); //得到网络返回的输入流
@@ -93,8 +95,6 @@ public class CheckUpdateThread implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
             mHandler.sendEmptyMessage(Constants.NETWORK_ERROR);
-        } catch (JSONException e){
-            e.printStackTrace();
         }
 
         return is;

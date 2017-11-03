@@ -1,5 +1,6 @@
 package com.vaenow.appupdate.android;
 
+import android.AuthenticationOptions;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Environment;
@@ -37,13 +38,13 @@ public class DownloadApkThread implements Runnable {
     private AlertDialog mDownloadDialog;
     private DownloadHandler downloadHandler;
     private Handler mHandler;
-    private JSONObject options;
+    private AuthenticationOptions authentication;
 
     public DownloadApkThread(Context mContext, Handler mHandler, ProgressBar mProgress, AlertDialog mDownloadDialog, HashMap<String, String> mHashMap, JSONObject options) {
         this.mDownloadDialog = mDownloadDialog;
         this.mHashMap = mHashMap;
         this.mHandler = mHandler;
-        this.options = options;
+        this.authentication = new AuthenticationOptions(options);
 
         this.mSavePath = Environment.getExternalStorageDirectory() + "/" + "download"; // SD Path
         this.downloadHandler = new DownloadHandler(mContext, mProgress, mDownloadDialog, this.mSavePath, mHashMap);
@@ -70,9 +71,8 @@ public class DownloadApkThread implements Runnable {
                 // 创建连接
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-                if(this.options.getString("authType").equals("basic")){
-                    String encoded = Base64.encodeToString((this.options.getString("username")+":"+this.options.getString("password")).getBytes(StandardCharsets.UTF_8), Base64.DEFAULT);  //Java 8
-                    conn.setRequestProperty("Authorization", "Basic "+encoded);
+                if(this.authentication.hasCredentials()){
+                    conn.setRequestProperty("Authorization", this.authentication.getEncodedAuthorization());
                 }
 
                 conn.connect();
@@ -116,8 +116,6 @@ public class DownloadApkThread implements Runnable {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e){
             e.printStackTrace();
         }
 
