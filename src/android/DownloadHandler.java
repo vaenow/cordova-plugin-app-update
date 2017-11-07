@@ -15,6 +15,8 @@ import android.support.v4.content.FileProvider;
 import java.io.File;
 import java.util.HashMap;
 
+import org.apache.cordova.LOG;
+
 /**
  * Created by LuoWen on 2015/12/14.
  */
@@ -84,20 +86,31 @@ public class DownloadHandler extends Handler {
      * 安装APK文件
      */
     private void installApk() {
+        LOG.d(TAG, "Installing APK");
+
         File apkFile = new File(mSavePath, mHashMap.get("name"));
         if (!apkFile.exists()) {
+            LOG.e(TAG, "Could not find APK: " + mHashMap.get("name"));
             return;
         }
+
+        LOG.d(TAG, "APK Filename: " + apkFile.toString());
+
         // 通过Intent安装APK文件
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if(Build.VERSION.SDK_INT >= 24){
-            i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            Uri uri = FileProvider.getUriForFile(mContext, "com.vaenow.appupdate.android.provider", apkFile);
-            i.setDataAndType(uri, "application/vnd.android.package-archive");
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            LOG.d(TAG, "Build SDK Greater than or equal to Nougat");
+            Uri apkUri = FileProvider.getUriForFile(mContext, "com.vaenow.appupdate.android.provider", apkFile);
+            Intent i = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+            i.setData(apkUri);
+            i.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            mContext.startActivity(i);
         }else{
+            LOG.d(TAG, "Build SDK less than Nougat");
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.setDataAndType(Uri.parse("file://" + apkFile.toString()), "application/vnd.android.package-archive");
+            mContext.startActivity(i);
         }
-        mContext.startActivity(i);
+
     }
 }
