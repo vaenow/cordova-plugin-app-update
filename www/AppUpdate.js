@@ -28,6 +28,5 @@ exports.checkAppUpdate = function(successOrUrl, errorOrOptions, updateUrl, optio
     
     options = options ? options : {};
     
-    
     exec(successCallback, errorCallback, "AppUpdate", "checkAppUpdate",  [updateUrl, options]);
 };
