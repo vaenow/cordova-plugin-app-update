@@ -42,6 +42,7 @@
         <source-file src="res/values-fr/appupdate_strings.xml" target-dir="res/values-fr"/>
         <source-file src="res/values-pt/appupdate_strings.xml" target-dir="res/values-pt"/>
         <source-file src="res/values-bn/appupdate_strings.xml" target-dir="res/values-bn"/>
+        <source-file src="res/values-pl/appupdate_strings.xml" target-dir="res/values-pl"/>
         <source-file src="res/layout/appupdate_progress.xml" target-dir="res/layout"/>
         <source-file src="res/xml/appupdate_paths.xml" target-dir="res/xml" />
     </platform>
