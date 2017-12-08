@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="cordova-plugin-app-update" version="1.4.7">
+    id="cordova-plugin-app-update" version="1.4.12">
     <name>AppUpdate</name>
     <description>Cordova App Update</description>
     <license>Apache 2.0</license>
@@ -26,7 +26,7 @@
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
              <provider
                 android:name="com.vaenow.appupdate.android.GenericFileProvider"
-                android:authorities="com.vaenow.appupdate.android.provider.${applicationId}"
+                android:authorities="com.vaenow.appupdate.android.provider"
                 android:exported="false"
                 android:grantUriPermissions="true">
                 <meta-data
@@ -42,6 +42,7 @@
         <source-file src="res/values-fr/appupdate_strings.xml" target-dir="res/values-fr"/>
         <source-file src="res/values-pt/appupdate_strings.xml" target-dir="res/values-pt"/>
         <source-file src="res/values-bn/appupdate_strings.xml" target-dir="res/values-bn"/>
+        <source-file src="res/values-pl/appupdate_strings.xml" target-dir="res/values-pl"/>
         <source-file src="res/layout/appupdate_progress.xml" target-dir="res/layout"/>
         <source-file src="res/xml/appupdate_paths.xml" target-dir="res/xml" />
     </platform>
