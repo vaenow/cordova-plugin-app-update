@@ -142,7 +142,7 @@ public class UpdateManager {
 
         //比对版本号
         //检查软件是否有更新版本
-        if (versionCodeLocal != versionCodeRemote) {
+        if (versionCodeLocal < versionCodeRemote) {
             if (isDownloading) {
                 msgBox.showDownloadDialog(null, null, null);
                 mHandler.sendEmptyMessage(Constants.VERSION_UPDATING);
