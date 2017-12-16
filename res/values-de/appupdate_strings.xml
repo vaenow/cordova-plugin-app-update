@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="update_latest">Aktuellste Version installiert</string>
+    <string name="update_title">Update verfügbar</string>
+    <string name="update_message">Die Software muss aktualisiert werden!</string>
+    <string name="update_update_btn">Update</string>
+    <string name="updating">Wird aktualisiert</string>
+    <string name="update_cancel">Abbrechen</string>
+    <string name="update_bg">Im Hintergrund aktualisieren</string>
+    <string name="download_complete_title">Download abgeschlossen</string>
+    <string name="download_complete_pos_btn">Download wiederholen</string>
+    <string name="download_complete_neu_btn">Manuell installieren</string>
+
+    <string name="update_error_title">Fehler</string>
+    <string name="update_error_message">Keine Internetverbindung. Bitte prüfen Sie Ihre Netzwerkeinstellungen.</string>
+    <string name="update_error_yes_btn">OK</string>
+</resources>
