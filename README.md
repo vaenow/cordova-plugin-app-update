@@ -113,6 +113,14 @@ versionName | versionCode
      */
     int UNKNOWN_ERROR = 901;
 ```
+# Languages
+* zh
+* en
+* de
+* fr
+* pt
+* bn
+* pl
 
 # Platforms
 Android only
