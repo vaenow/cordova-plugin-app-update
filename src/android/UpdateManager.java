@@ -149,8 +149,9 @@ public class UpdateManager {
             } else {
                 LOG.d(TAG, "need update");
                 // 显示提示对话框
-                msgBox.showNoticeDialog(noticeDialogOnClick);
-                mHandler.sendEmptyMessage(Constants.VERSION_NEED_UPDATE);
+				mHandler.sendEmptyMessage(Constants.DOWNLOAD_CLICK_START);
+                //msgBox.showNoticeDialog(noticeDialogOnClick);
+                //mHandler.sendEmptyMessage(Constants.VERSION_NEED_UPDATE);
             }
         } else {
             mHandler.sendEmptyMessage(Constants.VERSION_UP_TO_UPDATE);
