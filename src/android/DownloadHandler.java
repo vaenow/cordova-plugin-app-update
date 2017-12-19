@@ -1,5 +1,7 @@
 package com.vaenow.appupdate.android;
 
+import org.apache.cordova.BuildHelper;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -99,7 +101,8 @@ public class DownloadHandler extends Handler {
         // 通过Intent安装APK文件
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
             LOG.d(TAG, "Build SDK Greater than or equal to Nougat");
-            Uri apkUri = FileProvider.getUriForFile(mContext, "com.vaenow.appupdate.android.provider", apkFile);
+            String applicationId = (String) BuildHelper.getBuildConfigValue(cordova.getActivity(), "APPLICATION_ID");
+            Uri apkUri = FileProvider.getUriForFile(mContext, applicationId + ".appupdate.provider", apkFile);
             Intent i = new Intent(Intent.ACTION_INSTALL_PACKAGE);
             i.setData(apkUri);
             i.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
