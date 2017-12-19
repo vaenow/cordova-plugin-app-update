@@ -1,9 +1,13 @@
 package com.vaenow.appupdate.android;
 
+import android.AuthenticationOptions;
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Handler;
+import android.util.Base64;
 import org.apache.cordova.LOG;
+import org.json.JSONObject;
+import org.json.JSONException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,6 +16,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
+
+import 	java.nio.charset.StandardCharsets;
 
 /**
  * Created by LuoWen on 2015/12/14.
@@ -25,6 +31,7 @@ public class CheckUpdateThread implements Runnable {
     private List<Version> queue;
     private String packageName;
     private String updateXmlUrl;
+    private AuthenticationOptions authentication;
     private Handler mHandler;
 
     private void setMHashMap(HashMap<String, String> mHashMap) {
@@ -35,11 +42,12 @@ public class CheckUpdateThread implements Runnable {
         return mHashMap;
     }
 
-    public CheckUpdateThread(Context mContext, Handler mHandler, List<Version> queue, String packageName, String updateXmlUrl) {
+    public CheckUpdateThread(Context mContext, Handler mHandler, List<Version> queue, String packageName, String updateXmlUrl, JSONObject options) {
         this.mContext = mContext;
         this.queue = queue;
         this.packageName = packageName;
         this.updateXmlUrl = updateXmlUrl;
+        this.authentication = new AuthenticationOptions(options);
         this.mHandler = mHandler;
     }
 
@@ -73,6 +81,11 @@ public class CheckUpdateThread implements Runnable {
         try {
             url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();//利用HttpURLConnection对象,我们可以从网络中获取网页数据.
+
+            if(this.authentication.hasCredentials()){
+                conn.setRequestProperty("Authorization", this.authentication.getEncodedAuthorization());
+            }
+
             conn.setDoInput(true);
             conn.connect();
             is = conn.getInputStream(); //得到网络返回的输入流
