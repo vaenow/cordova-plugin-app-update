@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="update_latest">Posiadasz najnowszą wersję</string>
+    <string name="update_title">Nowa aktualizacja</string>
+    <string name="update_message">Oprogramowanie musi zostać zaktualizowane！</string>
+    <string name="update_update_btn">Aktualizuj</string>
+    <string name="updating">Aktualizowanie</string>
+    <string name="update_cancel">Anuluj</string>
+    <string name="update_bg">Aktualizuj w tle</string>
+    <string name="download_complete">Pobieranie zakończone</string>
+    <string name="download_complete_title">Pobieranie</string>
+    <string name="download_complete_pos_btn">Pobierz ponownie</string>
+    <string name="download_complete_neu_btn">Instaluj ręcznie</string>
+
+    <string name="update_error_title">Błąd</string>
+    <string name="update_error_message">Obecnie sieć jest niedostępna, sprawdź proszę ustawienia sieciowe.</string>
+    <string name="update_error_yes_btn">OK</string>
+</resources>
