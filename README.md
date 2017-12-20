@@ -54,6 +54,13 @@ appUpdate.checkAppUpdate(onSuccess, onFail, updateUrl, {
 })
 ```
 
+- Auto Update without waiting for User Prompt (App AutoUpdate and Restart immediately):
+```js
+appUpdate.checkAppUpdate(onSuccess, onFail, updateUrl, {
+    'skipPrompt' : '1'
+})
+```
+
 ### versionCode
 
 You can simply get the versionCode from typing those code in `Console`
