@@ -1,16 +1,16 @@
 {
-  "name": "cordova-plugin-app-update",
+  "name": "cordova-plugin-app-update-fork",
   "version": "1.4.14",
-  "description": "Cordova App Update",
+  "description": "Cordova App Update (Temporary Fork)",
   "cordova": {
-    "id": "cordova-plugin-app-update",
+    "id": "cordova-plugin-app-update-fork",
     "platforms": [
       "android"
     ]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vaenow/cordova-plugin-app-update.git"
+    "url": "git+https://github.com/loban/cordova-plugin-app-update.git"
   },
   "keywords": [
     "cordova",
@@ -22,20 +22,23 @@
     "ecosystem:cordova",
     "cordova-android"
   ],
-  "author": "vaenow",
+  "author": {
+    "name": "Loban Rahman",
+    "email": "loban.rahman@gmail.com",
+  },
   "license": "MIT",
   "scripts": {
     "test": "npm run jshint",
     "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src"
   },
   "bugs": {
-    "url": "https://github.com/vaenow/cordova-plugin-app-update/issues"
+    "url": "https://github.com/loban/cordova-plugin-app-update/issues"
   },
   "scripts": {
     "test": "npm run jshint",
     "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src && node node_modules/jshint/bin/jshint tests"
   },
-  "homepage": "https://github.com/vaenow/cordova-plugin-app-update#readme",
+  "homepage": "https://github.com/loban/cordova-plugin-app-update#readme",
   "devDependencies": {
     "jshint": "^2.6.0"
   }
