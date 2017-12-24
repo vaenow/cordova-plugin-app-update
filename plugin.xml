@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="cordova-plugin-app-update" version="1.4.14">
-    <name>AppUpdate</name>
-    <description>Cordova App Update</description>
+    id="cordova-plugin-app-update-fork" version="1.4.14">
+    <name>AppUpdateFork</name>
+    <description>Cordova App Update (Temporary Fork)</description>
     <license>Apache 2.0</license>
     <keywords>cordova,update,app,auto,updater</keywords>
     <dependency id="cordova-plugin-appversion" version="1.0.0" />
@@ -26,7 +26,7 @@
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
              <provider
                 android:name="com.vaenow.appupdate.android.GenericFileProvider"
-                android:authorities="com.vaenow.appupdate.android.provider"
+                android:authorities="${applicationId}.appupdate.provider"
                 android:exported="false"
                 android:grantUriPermissions="true">
                 <meta-data
