@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-app-update-fork",
-  "version": "1.4.14",
+  "version": "1.4.15",
   "description": "Cordova App Update (Temporary Fork)",
   "cordova": {
     "id": "cordova-plugin-app-update-fork",
