@@ -5,11 +5,11 @@
     <string name="update_message">E' disponibile una nuova versione!</string>
     <string name="update_update_btn">Aggiorna</string>
     <string name="updating">Aggiornamento</string>
-    <string name="update_cancel">Cancella</string>
+    <string name="update_cancel">Annulla</string>
     <string name="update_bg">Aggiorna in background</string>
-    <string name="download_complete">Aggiornamento completato con successo</string>
-    <string name="download_complete_title">Aggiornamento completato</string>
-    <string name="download_complete_pos_btn">Aggiorna di nuovo</string>
+    <string name="download_complete">Download completato con successo</string>
+    <string name="download_complete_title">Download completato</string>
+    <string name="download_complete_pos_btn">Scarica di nuovo</string>
     <string name="download_complete_neu_btn">Installa manualmente</string>
 
     <string name="update_error_title">Errore</string>
