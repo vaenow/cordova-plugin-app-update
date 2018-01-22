@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="update_latest">Sei in possesso dell' ultima versione</string>
+    <string name="update_latest">Sei in possesso dell\' ultima versione</string>
     <string name="update_title">Nuovo aggiornamento</string>
-    <string name="update_message">E' disponibile una nuova versione!</string>
+    <string name="update_message">E\' disponibile una nuova versione!</string>
     <string name="update_update_btn">Aggiorna</string>
     <string name="updating">Aggiornamento</string>
     <string name="update_cancel">Annulla</string>
