@@ -133,6 +133,15 @@ public class UpdateManager {
     }
 
     /**
+     * Permissions denied
+     */
+    public void permissionsDenied() {
+        LOG.d(TAG, "permissionsDenied..");
+
+        callbackContext.error(Utils.makeJSON(Constants.PERMISSION_DENIED, "Necessary permissions denied"));
+    }
+
+    /**
      * 对比版本号
      */
     private void compareVersions() {

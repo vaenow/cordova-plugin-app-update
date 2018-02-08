@@ -2,6 +2,7 @@ package com.vaenow.appupdate.android;
 
 import android.app.Activity;
 import android.Manifest;
+import android.content.pm.PackageManager;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -74,7 +75,7 @@ public class CheckAppUpdate extends CordovaPlugin {
     public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grantResults) throws JSONException {
         for (int result:grantResults) {
             if (result == PackageManager.PERMISSION_DENIED) {
-                callbackContext.error(Utils.makeJSON(Constants.PERMISSION_DENIED, "Necessary permissions denied"));
+                getUpdateManager().permissionsDenied();
                 return;
             }
         }
