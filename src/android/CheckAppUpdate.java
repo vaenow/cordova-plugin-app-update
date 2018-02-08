@@ -59,7 +59,7 @@ public class CheckAppUpdate extends CordovaPlugin {
     };
 
     // Prompt user for all necessary permissions if we don't already have them all.
-    public void verifyPermission() {
+    public boolean verifyPermissions() {
         boolean hasAllPermissions = true;
         for (String permission:PERMISSIONS)
             hasAllPermissions = hasAllPermissions && cordova.hasPermission(permission);
