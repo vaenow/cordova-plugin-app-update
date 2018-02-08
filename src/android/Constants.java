@@ -35,6 +35,7 @@ public interface Constants {
      * 没有相应的方法
      */
     int NO_SUCH_METHOD = 501;
+    int PERMISSION_DENIED = 502;
 
     /**
      * 未知错误
