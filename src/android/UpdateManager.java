@@ -135,10 +135,10 @@ public class UpdateManager {
     /**
      * Permissions denied
      */
-    public void permissionsDenied() {
+    public void permissionDenied(String errMsg) {
         LOG.d(TAG, "permissionsDenied..");
 
-        callbackContext.error(Utils.makeJSON(Constants.PERMISSION_DENIED, "Necessary permissions denied"));
+        callbackContext.error(Utils.makeJSON(Constants.PERMISSION_DENIED, errMsg));
     }
 
     /**
