@@ -7,6 +7,7 @@
     <string name="updating">Updating</string>
     <string name="update_cancel">Cancel</string>
     <string name="update_bg">Update in background</string>
+    <string name="download_complete">Download complete</string>
     <string name="download_complete_title">Download complete</string>
     <string name="download_complete_pos_btn">Download again</string>
     <string name="download_complete_neu_btn">Install manually</string>
