@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="update_latest">Установлена последняя версия</string>
+    <string name="update_title">Новое обновление</string>
+    <string name="update_message">Требуется установить обновление!</string>
+    <string name="update_update_btn">Обновить</string>
+    <string name="updating">Обновляется</string>
+    <string name="update_cancel">Отмена</string>
+    <string name="update_bg">Обновить в фоне</string>
+    <string name="download_complete">Скачивание завершено</string>
+    <string name="download_complete_title">Скачивание завершено</string>
+    <string name="download_complete_pos_btn">Скачать заново</string>
+    <string name="download_complete_neu_btn">Установить вручную</string>
+
+    <string name="update_error_title">Ошибка</string>
+    <string name="update_error_message">Ошибка сети, проверьте настройки сети.</string>
+    <string name="update_error_yes_btn">Ок</string>
+</resources>
