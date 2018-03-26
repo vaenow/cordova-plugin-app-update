@@ -4,6 +4,8 @@
 
 [![NPM](https://nodei.co/npm/cordova-plugin-app-update.png?downloads=true&downloadRank=true)](https://nodei.co/npm/cordova-plugin-app-update/)
 
+[![Code Sponsor](https://app.codesponsor.io/embed/hX3B5zbeSNNBz6vUNKnjqriV/vaenow/cordova-plugin-app-update.svg)](https://app.codesponsor.io/link/hX3B5zbeSNNBz6vUNKnjqriV/vaenow/cordova-plugin-app-update)
+
 
 # cordova-plugin-app-update
 App updater for Cordova/PhoneGap
@@ -27,7 +29,10 @@ Just clone and install this demo.
 
 # Install
 
-### Latest published version on npm (with Cordova CLI >= 5.0.0)
+### Latest published version on npm (with Cordova CLI >= 5.0.0) 
+
+> `"cordova-android": "6.3.0"`
+
 `cordova plugin add cordova-plugin-app-update --save`
 
 # Usage
@@ -111,6 +116,16 @@ versionName | versionCode
      */
     int UNKNOWN_ERROR = 901;
 ```
+# Languages
+* 🇨🇳 zh
+* 🇺🇸 en 
+* 🇩🇪 de 
+* 🇫🇷 fr 
+* 🇵🇹 pt 
+* 🇧🇩 bn 
+* 🇵🇱 pl 
+* 🇮🇹 it 
+* 🇪🇸 es
 
 # Platforms
 Android only
