@@ -126,6 +126,7 @@ versionName | versionCode
 * 🇵🇱 pl 
 * 🇮🇹 it 
 * 🇪🇸 es
+* 🇷🇺 ru
 
 # Platforms
 Android only
