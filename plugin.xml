@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="cordova-plugin-app-update" version="1.5.3">
+    id="cordova-plugin-app-update" version="1.5.4">
     <name>AppUpdate</name>
     <description>Cordova App Update</description>
     <license>Apache 2.0</license>
