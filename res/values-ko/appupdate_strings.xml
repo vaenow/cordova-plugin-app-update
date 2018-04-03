@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="update_latest">최신 버전입니다</string>
+    <string name="update_title">새로운 업데이트</string>
+    <string name="update_message">업데이트가 필요합니다!</string>
+    <string name="update_update_btn">업데이트</string>
+    <string name="updating">업데이트 중입니다</string>
+    <string name="update_cancel">취소</string>
+    <string name="update_bg">백그라운드 업데이트</string>
+    <string name="download_complete">다운로드 완료</string>
+    <string name="download_complete_title">다운로드 완료</string>
+    <string name="download_complete_pos_btn">다시 다운로드</string>
+    <string name="download_complete_neu_btn">수동으로 다운로드</string>
+
+    <string name="update_error_title">에러</string>
+    <string name="update_error_message">네트워크를 사용할 수 없습니다, 네트워크 상태를 확인해주세요.</string>
+    <string name="update_error_yes_btn">확인</string>
+</resources>
