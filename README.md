@@ -4,9 +4,6 @@
 
 [![NPM](https://nodei.co/npm/cordova-plugin-app-update.png?downloads=true&downloadRank=true)](https://nodei.co/npm/cordova-plugin-app-update/)
 
-[![Code Sponsor](https://app.codesponsor.io/embed/hX3B5zbeSNNBz6vUNKnjqriV/vaenow/cordova-plugin-app-update.svg)](https://app.codesponsor.io/link/hX3B5zbeSNNBz6vUNKnjqriV/vaenow/cordova-plugin-app-update)
-
-
 # cordova-plugin-app-update
 App updater for Cordova/PhoneGap
 
@@ -130,6 +127,8 @@ versionName | versionCode
 * 🇧🇩 bn 
 * 🇵🇱 pl 
 * 🇮🇹 it 
+* 🇪🇸 es
+* 🇷🇺 ru
 
 # Platforms
 Android only
