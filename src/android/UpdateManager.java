@@ -148,9 +148,19 @@ public class UpdateManager {
                 mHandler.sendEmptyMessage(Constants.VERSION_UPDATING);
             } else {
                 LOG.d(TAG, "need update");
+				boolean skipPrompt=false;
+                try {
+                    skipPrompt = this.options.getString("skipPrompt").equals("1") ||  this.options.getString("skipPrompt").toUpperCase().equals("TRUE");
+                } catch (JSONException e){}
                 // 显示提示对话框
-                msgBox.showNoticeDialog(noticeDialogOnClick);
-                mHandler.sendEmptyMessage(Constants.VERSION_NEED_UPDATE);
+                if (skipPrompt) {
+                    // Skip Prompt, update immediately
+                    mHandler.sendEmptyMessage(Constants.DOWNLOAD_CLICK_START);
+                } else {
+                    // Wait for user prompt before updating
+                    msgBox.showNoticeDialog(noticeDialogOnClick);
+                    mHandler.sendEmptyMessage(Constants.VERSION_NEED_UPDATE);
+                }
             }
         } else {
             mHandler.sendEmptyMessage(Constants.VERSION_UP_TO_UPDATE);
