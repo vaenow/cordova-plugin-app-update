@@ -33,12 +33,14 @@ Just clone and install this demo.
 `cordova plugin add cordova-plugin-app-update --save`
 
 # Usage
- - Simple:
+
+- Simple:
 ```js
 var updateUrl = "http://192.168.0.1/version.xml";
 window.AppUpdate.checkAppUpdate(onSuccess, onFail, updateUrl);
 ```
- - Verbose
+
+- Verbose
 ```js
 var appUpdate = cordova.require('cordova-plugin-app-update.AppUpdate');
 var updateUrl = "http://192.168.0.1/version.xml";
@@ -51,6 +53,14 @@ appUpdate.checkAppUpdate(onSuccess, onFail, updateUrl, {
     'authType' : 'basic',
     'username' : 'test',
     'password' : 'test'
+})
+```
+
+- Skip dialog boxes
+```js
+appUpdate.checkAppUpdate(onSuccess, onFail, updateUrl, {
+    'skipPromptDialog' : true,
+    'skipProgressDialog' : true
 })
 ```
 
