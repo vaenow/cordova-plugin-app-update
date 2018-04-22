@@ -61,7 +61,8 @@ public class MsgBox {
      */
     public Map<String, Object> showDownloadDialog(OnClickListener onClickListenerNeg,
                                                   OnClickListener onClickListenerPos,
-                                                  OnClickListener onClickListenerNeu) {
+                                                  OnClickListener onClickListenerNeu,
+                                                  boolean showDialog) {
         if (downloadDialog == null) {
             LOG.d(TAG, "showDownloadDialog");
 
@@ -84,14 +85,16 @@ public class MsgBox {
             downloadDialog = builder.create();
         }
 
-        if (!downloadDialog.isShowing()) downloadDialog.show();
+        if (showDialog && !downloadDialog.isShowing()) downloadDialog.show();
 
         downloadDialog.setTitle(msgHelper.getString(MsgHelper.UPDATING));
-        downloadDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setVisibility(View.VISIBLE); //Update in background
-        downloadDialog.getButton(DialogInterface.BUTTON_NEUTRAL).setVisibility(View.GONE); //Install Manually
-        downloadDialog.getButton(DialogInterface.BUTTON_POSITIVE).setVisibility(View.GONE); //Download Again
-
         downloadDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
+        if (downloadDialog.isShowing()) {
+            downloadDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setVisibility(View.VISIBLE); //Update in background
+            downloadDialog.getButton(DialogInterface.BUTTON_NEUTRAL).setVisibility(View.GONE); //Install Manually
+            downloadDialog.getButton(DialogInterface.BUTTON_POSITIVE).setVisibility(View.GONE); //Download Again
+        }
+
         Map<String, Object> ret = new HashMap<String, Object>();
         ret.put("dialog", downloadDialog);
         ret.put("progress", downloadDialogProgress);

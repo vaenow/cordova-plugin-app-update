@@ -149,17 +149,31 @@ public class UpdateManager {
         int versionCodeLocal = version.getLocal();
         int versionCodeRemote = version.getRemote();
 
+        boolean skipPromptDialog = false;
+        try {
+            skipPromptDialog = options.getBoolean("skipPromptDialog");
+        } catch (JSONException e) {}
+
+        boolean skipProgressDialog = false;
+        try {
+            skipProgressDialog = options.getBoolean("skipProgressDialog");
+        } catch (JSONException e) {}
+
         //比对版本号
         //检查软件是否有更新版本
         if (versionCodeLocal < versionCodeRemote) {
             if (isDownloading) {
-                msgBox.showDownloadDialog(null, null, null);
+                msgBox.showDownloadDialog(null, null, null, !skipProgressDialog);
                 mHandler.sendEmptyMessage(Constants.VERSION_UPDATING);
             } else {
                 LOG.d(TAG, "need update");
-                // 显示提示对话框
-                msgBox.showNoticeDialog(noticeDialogOnClick);
-                mHandler.sendEmptyMessage(Constants.VERSION_NEED_UPDATE);
+                if (skipPromptDialog) {
+                    mHandler.sendEmptyMessage(Constants.DOWNLOAD_CLICK_START);
+                } else {
+                    // 显示提示对话框
+                    msgBox.showNoticeDialog(noticeDialogOnClick);
+                    mHandler.sendEmptyMessage(Constants.VERSION_NEED_UPDATE);
+                }
             }
         } else {
             mHandler.sendEmptyMessage(Constants.VERSION_UP_TO_UPDATE);
@@ -178,11 +192,19 @@ public class UpdateManager {
 
     private void emitNoticeDialogOnClick() {
         isDownloading = true;
+
+        boolean skipProgressDialog = false;
+        try {
+            skipProgressDialog = options.getBoolean("skipProgressDialog");
+        } catch (JSONException e) {}
+
         // 显示下载对话框
         Map<String, Object> ret = msgBox.showDownloadDialog(
                 downloadDialogOnClickNeg,
                 downloadDialogOnClickPos,
-                downloadDialogOnClickNeu);
+                downloadDialogOnClickNeu,
+                !skipProgressDialog);
+
         // 下载文件
         downloadApk((AlertDialog) ret.get("dialog"), (ProgressBar) ret.get("progress"));
     }
