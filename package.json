@@ -24,10 +24,6 @@
   ],
   "author": "vaenow",
   "license": "MIT",
-  "scripts": {
-    "test": "npm run jshint",
-    "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src"
-  },
   "bugs": {
     "url": "https://github.com/vaenow/cordova-plugin-app-update/issues"
   },
