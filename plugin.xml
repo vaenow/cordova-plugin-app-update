@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="cordova-plugin-app-update" version="1.6.0">
+    id="cordova-plugin-app-update" version="2.0.1">
     <name>AppUpdate</name>
     <description>Cordova App Update</description>
     <license>Apache 2.0</license>
@@ -19,6 +19,7 @@
 
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
             <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
             <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
@@ -36,7 +37,22 @@
             </provider>
         </config-file>
 
-        <source-file src="src/android" target-dir="src/com/vaenow/appupdate"/>
+        <source-file src="src/android/AuthenticationOptions.java" target-dir="src/com/vaenow/appupdate/android"/>
+        <source-file src="src/android/CheckAppUpdate.java" target-dir="src/com/vaenow/appupdate/android"/>
+        <source-file src="src/android/CheckUpdateThread.java" target-dir="src/com/vaenow/appupdate/android"/>
+        <source-file src="src/android/Constants.java" target-dir="src/com/vaenow/appupdate/android"/>
+        <source-file src="src/android/DownloadApkThread.java" target-dir="src/com/vaenow/appupdate/android"/>
+        <source-file src="src/android/DownloadHandler.java" target-dir="src/com/vaenow/appupdate/android"/>
+        <source-file src="src/android/GenericFileProvider.java" target-dir="src/com/vaenow/appupdate/android"/>
+        <source-file src="src/android/GetRemoteXmlThread.java" target-dir="src/com/vaenow/appupdate/android"/>
+        <source-file src="src/android/MsgBox.java" target-dir="src/com/vaenow/appupdate/android"/>
+        <source-file src="src/android/MsgHelper.java" target-dir="src/com/vaenow/appupdate/android"/>
+        <source-file src="src/android/ParseXmlService.java" target-dir="src/com/vaenow/appupdate/android"/>
+        <source-file src="src/android/UIValues.java" target-dir="src/com/vaenow/appupdate/android"/>
+        <source-file src="src/android/UpdateManager.java" target-dir="src/com/vaenow/appupdate/android"/>
+        <source-file src="src/android/Utils.java" target-dir="src/com/vaenow/appupdate/android"/>
+        <source-file src="src/android/Version.java" target-dir="src/com/vaenow/appupdate/android"/>
+
         <source-file src="res/values/appupdate_strings.xml" target-dir="res/values"/>
         <source-file src="res/values-en/appupdate_strings.xml" target-dir="res/values-en"/>
         <source-file src="res/values-es/appupdate_strings.xml" target-dir="res/values-es"/>

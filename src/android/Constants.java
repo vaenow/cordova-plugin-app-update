@@ -37,6 +37,11 @@ public interface Constants {
     int NO_SUCH_METHOD = 501;
 
     /**
+     * Permissions
+     */
+    int PERMISSION_DENIED = 601;
+
+    /**
      * 未知错误
      */
     int UNKNOWN_ERROR = 901;
