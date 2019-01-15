@@ -159,6 +159,11 @@ public class UpdateManager {
             skipProgressDialog = options.getBoolean("skipProgressDialog");
         } catch (JSONException e) {}
 
+        boolean userCanCancel = false;
+        try {
+            userCanCAncel = options.getBoolean("userCanCancel")
+        } catch (JSONException ignore) {}
+
         //比对版本号
         //检查软件是否有更新版本
         if (versionCodeLocal < versionCodeRemote) {
@@ -171,7 +176,7 @@ public class UpdateManager {
                     mHandler.sendEmptyMessage(Constants.DOWNLOAD_CLICK_START);
                 } else {
                     // 显示提示对话框
-                    msgBox.showNoticeDialog(noticeDialogOnClick);
+                    msgBox.showNoticeDialog(noticeDialogOnClick, userCanCancel);
                     mHandler.sendEmptyMessage(Constants.VERSION_NEED_UPDATE);
                 }
             }

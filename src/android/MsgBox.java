@@ -37,7 +37,7 @@ public class MsgBox {
      *
      * @param onClickListener
      */
-    public Dialog showNoticeDialog(OnClickListener onClickListener) {
+    public Dialog showNoticeDialog(OnClickListener onClickListener, boolean userCanCancel) {
         if (noticeDialog == null) {
             LOG.d(TAG, "showNoticeDialog");
             // 构造对话框
@@ -45,6 +45,7 @@ public class MsgBox {
             builder.setTitle(msgHelper.getString(MsgHelper.UPDATE_TITLE));
             builder.setMessage(msgHelper.getString(MsgHelper.UPDATE_MESSAGE));
             // 更新
+            builder.setNegativeButton(msgHelper.getString(MsgHelper.UPDATE_CANCEL_BTN));
             builder.setPositiveButton(msgHelper.getString(MsgHelper.UPDATE_UPDATE_BTN), onClickListener);
             noticeDialog = builder.create();
         }
