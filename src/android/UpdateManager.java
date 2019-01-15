@@ -161,7 +161,7 @@ public class UpdateManager {
 
         boolean userCanCancel = false;
         try {
-            userCanCAncel = options.getBoolean("userCanCancel")
+            userCanCAncel = options.getBoolean("userCanCancel");
         } catch (JSONException ignore) {}
 
         //比对版本号
