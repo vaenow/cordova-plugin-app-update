@@ -46,7 +46,13 @@ public class MsgBox {
             builder.setMessage(msgHelper.getString(MsgHelper.UPDATE_MESSAGE));
             // 更新
             if (userCanCancel) {
-                builder.setNegativeButton(msgHelper.getString(MsgHelper.UPDATE_CANCEL_BTN));
+                builder.setNegativeButton(msgHelper.getString(MsgHelper.UPDATE_CANCEL_BTN), new OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Juste dismiss
+                        dialog.dismiss();
+                    }
+                });
             }
             builder.setPositiveButton(msgHelper.getString(MsgHelper.UPDATE_UPDATE_BTN), onClickListener);
             noticeDialog = builder.create();
