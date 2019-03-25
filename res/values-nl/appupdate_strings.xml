@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="update_latest">U beschikt over de laatste versie</string>
+    <string name="update_title">Nieuwe versie</string>
+    <string name="update_message">Er is een nieuwe versie beschikbaar！</string>
+    <string name="update_update_btn">Update</string>
+    <string name="updating">Updating</string>
+    <string name="update_cancel">Annuleer</string>
+    <string name="update_bg">Update in de achtergrond</string>
+    <string name="download_complete">Download volledig</string>
+    <string name="download_complete_title">Download volledig</string>
+    <string name="download_complete_pos_btn">Opnieuw downloaden</string>
+    <string name="download_complete_neu_btn">Manueel installeren</string>
+
+    <string name="update_error_title">Fout</string>
+    <string name="update_error_message">Het huidige netwerk is niet beschikbaar , aub controleer uw netwerk settings.</string>
+    <string name="update_error_yes_btn">Ok</string>
+</resources>
