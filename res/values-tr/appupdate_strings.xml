@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="update_latest">Şimdi en son güncellemeye sahipsin.</string>
+    <string name="update_title">Yeni Güncelleme</string>
+    <string name="update_message">Uygulama Güncellendi！</string>
+    <string name="update_update_btn">Güncelle</string>
+    <string name="updating">Güncelleniyor</string>
+    <string name="update_cancel">İptal</string>
+    <string name="update_bg">Arka Plana Al</string>
+    <string name="download_complete">İndirme tamamlandı.</string>
+    <string name="download_complete_title">İndirme tamamlandı.</string>
+    <string name="download_complete_pos_btn">Yeniden indir.</string>
+    <string name="download_complete_neu_btn">Manuel Yükle</string>
+
+    <string name="update_error_title">Hata</string>
+    <string name="update_error_message">Geçerli ağ kullanılamıyor, lütfen ağ ayarlarınızı kontrol edin.</string>
+    <string name="update_error_yes_btn">Tamam</string>
+</resources>
