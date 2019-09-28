@@ -34,6 +34,14 @@ Just clone and install this demo.
 
 # Usage
 
+- Note:
+if your apk is by use in Android 8 , please check your targetSdkVersion is not 26 ? if not , please set it . 
+because targetSdkVersion < 26 on Android 8 , the plugin code `canRequestPackageInstalls` always return false .
+ it result this plugin throw error "android.permission.REQUEST_INSTALL_PACKAGES".
+
+如果你的apk是运行在android 8 以上的机器上，请检查你的targetSdkVersion是不是26，如果不是，会报错。
+因为在android 8 以上的机器上， targetSdkVersion < 26 会导致 这个方法 `canRequestPackageInstalls` 总是返回false。导致插件报错`android.permission.REQUEST_INSTALL_PACKAGES`
+
 - Simple:
 ```js
 var updateUrl = "http://192.168.0.1/version.xml";
