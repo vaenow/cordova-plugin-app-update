@@ -14,7 +14,7 @@ import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ProgressBar;
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 import java.io.File;
 import java.util.HashMap;
 
