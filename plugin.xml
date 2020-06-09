@@ -5,11 +5,11 @@
     <description>Cordova App Update</description>
     <license>Apache 2.0</license>
     <keywords>cordova,update,app,auto,updater</keywords>
-    <dependency id="cordova-plugin-appversion" version="1.0.0" />
     <js-module src="www/AppUpdate.js" name="AppUpdate">
         <clobbers target="AppUpdate" />
     </js-module>
     <platform name="android">
+        <dependency id="cordova-plugin-appversion" version="1.0.0" />
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="AppUpdate">
                 <param name="android-package" value="com.vaenow.appupdate.android.CheckAppUpdate"/>
@@ -67,7 +67,7 @@
         <source-file src="res/values-ko/appupdate_strings.xml" target-dir="res/values-ko"/>
         <source-file src="res/layout/appupdate_progress.xml" target-dir="res/layout"/>
         <source-file src="res/xml/appupdate_paths.xml" target-dir="res/xml" />
-        
+
         <framework src="com.android.support:support-v4:24.1.1+" />
     </platform>
 </plugin>
