@@ -4,9 +4,9 @@
     <string name="update_title">Nieuwe versie</string>
     <string name="update_message">Er is een nieuwe versie beschikbaar！</string>
     <string name="update_update_btn">Update</string>
-    <string name="updating">Updating</string>
+    <string name="updating">Update downloaden</string>
     <string name="update_cancel">Annuleer</string>
-    <string name="update_bg">Update in de achtergrond</string>
+    <string name="update_bg">Download in de achtergrond</string>
     <string name="download_complete">Download volledig</string>
     <string name="download_complete_title">Download volledig</string>
     <string name="download_complete_pos_btn">Opnieuw downloaden</string>
