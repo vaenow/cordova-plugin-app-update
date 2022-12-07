@@ -18,6 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.lang.*;
 
 import 	java.nio.charset.StandardCharsets;
 
@@ -39,6 +40,7 @@ public class DownloadApkThread implements Runnable {
     private DownloadHandler downloadHandler;
     private Handler mHandler;
     private AuthenticationOptions authentication;
+    private long uniqueVersionId;
 
     public DownloadApkThread(Context mContext, Handler mHandler, ProgressBar mProgress, AlertDialog mDownloadDialog, HashMap<String, String> mHashMap, JSONObject options) {
         this.mDownloadDialog = mDownloadDialog;
@@ -47,7 +49,8 @@ public class DownloadApkThread implements Runnable {
         this.authentication = new AuthenticationOptions(options);
 
         this.mSavePath = Environment.getExternalStorageDirectory() + "/" + "download"; // SD Path
-        this.downloadHandler = new DownloadHandler(mContext, mProgress, mDownloadDialog, this.mSavePath, mHashMap);
+        this.uniqueVersionId = System.currentTimeMillis();
+        this.downloadHandler = new DownloadHandler(mContext, mProgress, mDownloadDialog, this.mSavePath, mHashMap, this.uniqueVersionId);
     }
 
 
@@ -86,7 +89,7 @@ public class DownloadApkThread implements Runnable {
                 if (!file.exists()) {
                     file.mkdir();
                 }
-                File apkFile = new File(mSavePath, mHashMap.get("name")+".apk");
+                File apkFile = new File(mSavePath, mHashMap.get("name")+this.uniqueVersionId+".apk");
                 FileOutputStream fos = new FileOutputStream(apkFile);
                 int count = 0;
                 // 缓存

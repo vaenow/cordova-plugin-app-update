@@ -14,7 +14,7 @@ import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ProgressBar;
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 import java.io.File;
 import java.util.HashMap;
 
@@ -37,14 +37,16 @@ public class DownloadHandler extends Handler {
     private HashMap<String, String> mHashMap;
     private MsgHelper msgHelper;
     private AlertDialog mDownloadDialog;
+    private long uniqueVersionId;
 
-    public DownloadHandler(Context mContext, ProgressBar mProgress, AlertDialog mDownloadDialog, String mSavePath, HashMap<String, String> mHashMap) {
+    public DownloadHandler(Context mContext, ProgressBar mProgress, AlertDialog mDownloadDialog, String mSavePath, HashMap<String, String> mHashMap, long uniqueVersionId) {
         this.msgHelper = new MsgHelper(mContext.getPackageName(), mContext.getResources());
         this.mDownloadDialog = mDownloadDialog;
         this.mContext = mContext;
         this.mProgress = mProgress;
         this.mSavePath = mSavePath;
         this.mHashMap = mHashMap;
+        this.uniqueVersionId = uniqueVersionId;
     }
 
     public void handleMessage(Message msg) {
@@ -92,7 +94,7 @@ public class DownloadHandler extends Handler {
     private void installApk() {
         LOG.d(TAG, "Installing APK");
 
-        File apkFile = new File(mSavePath, mHashMap.get("name")+".apk");
+        File apkFile = new File(mSavePath, mHashMap.get("name")+this.uniqueVersionId+".apk");
         if (!apkFile.exists()) {
             LOG.e(TAG, "Could not find APK: " + mHashMap.get("name"));
             return;
@@ -101,13 +103,14 @@ public class DownloadHandler extends Handler {
         LOG.d(TAG, "APK Filename: " + apkFile.toString());
 
         // 通过Intent安装APK文件
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
             LOG.d(TAG, "Build SDK Greater than or equal to Nougat");
             String applicationId = (String) BuildHelper.getBuildConfigValue((Activity) mContext, "APPLICATION_ID");
             Uri apkUri = FileProvider.getUriForFile(mContext, applicationId + ".appupdate.provider", apkFile);
             Intent i = new Intent(Intent.ACTION_INSTALL_PACKAGE);
             i.setData(apkUri);
             i.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            i.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
             mContext.startActivity(i);
         }else{
             LOG.d(TAG, "Build SDK less than Nougat");
