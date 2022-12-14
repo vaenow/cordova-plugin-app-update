@@ -53,7 +53,7 @@ public class UpdateManager {
         msgBox = new MsgBox(mContext);
     }
 
-    public UpdateManager(JSONArray args, CallbackContext callbackContext, Context context, JSONObject options) {
+    /*public UpdateManager(JSONArray args, CallbackContext callbackContext, Context context, JSONObject options) {
         this(args, callbackContext, context, "http://192.168.3.102:8080/update_apk/version.xml", options);
     }
 
@@ -65,7 +65,7 @@ public class UpdateManager {
         this.mContext = context;
         packageName = mContext.getPackageName();
         msgBox = new MsgBox(mContext);
-    }
+    }*/
 
     public UpdateManager options(JSONArray args, CallbackContext callbackContext)
             throws JSONException {
@@ -159,8 +159,12 @@ public class UpdateManager {
             skipProgressDialog = options.getBoolean("skipProgressDialog");
         } catch (JSONException e) {}
 
-        //比对版本号
-        //检查软件是否有更新版本
+        boolean userCanCancel = false;
+        try {
+            userCanCancel = options.getBoolean("userCanCancel");
+        } catch (JSONException ignore) {}
+
+        LOG.d(TAG, "local : " + versionCodeLocal + " / remote :" + versionCodeRemote);
         if (versionCodeLocal < versionCodeRemote) {
             if (isDownloading) {
                 msgBox.showDownloadDialog(null, null, null, !skipProgressDialog);
@@ -171,7 +175,7 @@ public class UpdateManager {
                     mHandler.sendEmptyMessage(Constants.DOWNLOAD_CLICK_START);
                 } else {
                     // 显示提示对话框
-                    msgBox.showNoticeDialog(noticeDialogOnClick);
+                    msgBox.showNoticeDialog(noticeDialogOnClick, userCanCancel);
                     mHandler.sendEmptyMessage(Constants.VERSION_NEED_UPDATE);
                 }
             }

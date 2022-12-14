@@ -64,6 +64,13 @@ appUpdate.checkAppUpdate(onSuccess, onFail, updateUrl, {
 })
 ```
 
+- User can cancel update
+```js
+appUpdate.checkAppUpdate(onSuccess, onFail, updateUrl, {
+    'userCanCancel' : true
+})
+```
+
 ### versionCode
 
 You can simply get the versionCode from typing those code in `Console`

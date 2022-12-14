@@ -1,6 +1,5 @@
 package com.vaenow.appupdate.android;
 
-import android.AuthenticationOptions;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Environment;
@@ -16,7 +15,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
 
 import 	java.nio.charset.StandardCharsets;
@@ -39,17 +37,22 @@ public class DownloadApkThread implements Runnable {
     private DownloadHandler downloadHandler;
     private Handler mHandler;
     private AuthenticationOptions authentication;
+    private boolean sslCheck = true;
 
     public DownloadApkThread(Context mContext, Handler mHandler, ProgressBar mProgress, AlertDialog mDownloadDialog, HashMap<String, String> mHashMap, JSONObject options) {
         this.mDownloadDialog = mDownloadDialog;
         this.mHashMap = mHashMap;
         this.mHandler = mHandler;
         this.authentication = new AuthenticationOptions(options);
+        try {
+            this.sslCheck = options.has("sslCheck") ? options.getBoolean("sslCheck") : true;
+        } catch (JSONException e){
+            // If there is any error then sslCheck is to true by default
+        }
 
         this.mSavePath = Environment.getExternalStorageDirectory() + "/" + "download"; // SD Path
         this.downloadHandler = new DownloadHandler(mContext, mProgress, mDownloadDialog, this.mSavePath, mHashMap);
     }
-
 
     @Override
     public void run() {
@@ -66,16 +69,8 @@ public class DownloadApkThread implements Runnable {
         try {
             // 判断SD卡是否存在，并且是否具有读写权限
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                // 获得存储卡的路径
-                URL url = new URL(mHashMap.get("url"));
-                // 创建连接
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                HttpURLConnection conn = Utils.openConnection(mHashMap.get("url"), mHandler, this.authentication, this.sslCheck);
 
-                if(this.authentication.hasCredentials()){
-                    conn.setRequestProperty("Authorization", this.authentication.getEncodedAuthorization());
-                }
-
-                conn.connect();
                 // 获取文件大小
                 int length = conn.getContentLength();
                 // 创建输入流

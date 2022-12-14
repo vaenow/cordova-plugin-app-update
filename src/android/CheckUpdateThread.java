@@ -1,6 +1,5 @@
 package com.vaenow.appupdate.android;
 
-import android.AuthenticationOptions;
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Handler;
@@ -9,13 +8,10 @@ import org.apache.cordova.LOG;
 import org.json.JSONObject;
 import org.json.JSONException;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 
 import 	java.nio.charset.StandardCharsets;
 
@@ -34,6 +30,8 @@ public class CheckUpdateThread implements Runnable {
     private AuthenticationOptions authentication;
     private Handler mHandler;
 
+    private boolean sslCheck = true;
+
     private void setMHashMap(HashMap<String, String> mHashMap) {
         this.mHashMap = mHashMap;
     }
@@ -49,6 +47,11 @@ public class CheckUpdateThread implements Runnable {
         this.updateXmlUrl = updateXmlUrl;
         this.authentication = new AuthenticationOptions(options);
         this.mHandler = mHandler;
+        try {
+            this.sslCheck = options.has("sslCheck") ? options.getBoolean("sslCheck") : true;
+        } catch (JSONException e){
+            // If there is any error then sslCheck is to true by default
+        }
     }
 
     @Override
@@ -73,28 +76,16 @@ public class CheckUpdateThread implements Runnable {
      * @return
      */
     private InputStream returnFileIS(String path) {
-        LOG.d(TAG, "returnFileIS..");
+        LOG.d(TAG, "returnFileIS.." + (this.sslCheck ? "Secure" : "Unsecure"));
 
-        URL url = null;
+        HttpURLConnection conn = Utils.openConnection(path, this.authentication, this.sslCheck);
         InputStream is = null;
 
         try {
-            url = new URL(path);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();//利用HttpURLConnection对象,我们可以从网络中获取网页数据.
-
-            if(this.authentication.hasCredentials()){
-                conn.setRequestProperty("Authorization", this.authentication.getEncodedAuthorization());
-            }
-
-            conn.setDoInput(true);
-            conn.connect();
-            is = conn.getInputStream(); //得到网络返回的输入流
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            mHandler.sendEmptyMessage(Constants.REMOTE_FILE_NOT_FOUND);
+            is = conn.getInputStream();
         } catch (IOException e) {
             e.printStackTrace();
-            mHandler.sendEmptyMessage(Constants.NETWORK_ERROR);
+            mHandler.sendEmptyMessage(Constants.UNKNOWN_ERROR);
         }
 
         return is;
