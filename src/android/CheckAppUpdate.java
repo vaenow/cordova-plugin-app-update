@@ -93,14 +93,33 @@ public class CheckAppUpdate extends CordovaPlugin {
         return true;
     }
 
+    // Updated OTHER_PERMISSIONS array
+        private String[] getOtherPermissions() {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                return new String[] {
+                    Manifest.permission.INTERNET,
+                    Manifest.permission.READ_MEDIA_IMAGES,
+                    Manifest.permission.READ_MEDIA_VIDEO,
+                };
+            } else {
+                return new String[] {
+                    Manifest.permission.INTERNET,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                };
+            }
+        }
+
     // Prompt user for all other permissions if we don't already have them all.
     public boolean verifyOtherPermissions() {
+        String[] otherPermissions = getOtherPermissions();
         boolean hasOtherPermissions = true;
-        for (String permission:OTHER_PERMISSIONS)
+        for (String permission : otherPermissions) {
             hasOtherPermissions = hasOtherPermissions && cordova.hasPermission(permission);
+        }
 
         if (!hasOtherPermissions) {
-            cordova.requestPermissions(this, OTHER_PERMISSIONS_REQUEST_CODE, OTHER_PERMISSIONS);
+            cordova.requestPermissions(this, OTHER_PERMISSIONS_REQUEST_CODE, otherPermissions);
             return false;
         }
 
@@ -112,7 +131,7 @@ public class CheckAppUpdate extends CordovaPlugin {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == INSTALL_PERMISSION_REQUEST_CODE) {
             if (!cordova.getActivity().getPackageManager().canRequestPackageInstalls()) {
-                getUpdateManager().permissionDenied("Permission Denied: " + Manifest.permission.REQUEST_INSTALL_PACKAGES);
+                getUpdateManager().permissionDenied("Permission Denied: " + Manifest.permission.REQUEST_INSTALL_PACKAGES + " " + android.os.Build.VERSION.SDK_INT);
                 return;
             }
 
