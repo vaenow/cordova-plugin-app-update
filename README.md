@@ -5,7 +5,7 @@
 [![NPM](https://nodei.co/npm/cordova-plugin-app-update.png?downloads=true&downloadRank=true)](https://nodei.co/npm/cordova-plugin-app-update/)
 
 # cordova-plugin-app-update
-App updater for Cordova/PhoneGap
+App updater for Cordova/PhoneGap with some modifications that resolve some bugs on newer cordova versions
 
 # Demo 
 Try it yourself:
